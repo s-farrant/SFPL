@@ -1,0 +1,111 @@
+{% extends "a1_core/base.html" %}
+{% load static %}
+
+<!-- FPL Purple #37003c-->
+
+{% block content %}
+
+<div class="page-div">
+
+    <div class="left-sidebar">
+        <h3 class="bar-header">Dreamteams</h3>
+        <div class="sidebar-content">
+            {% for gameweek in available_gameweeks %}
+                <li class="bar-list">
+                    {% if gameweek == selected_gameweek %}
+                        <a class="bold" href="{% url 'dreamteam' gameweek=gameweek %}">Gameweek {{ gameweek }}</a>
+                    {% else %}
+                        <a href="{% url 'dreamteam' gameweek=gameweek %}">Gameweek {{ gameweek }}</a>
+                    {% endif %}
+                </li>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="pitch-div-div">
+
+        <div class="summary">
+            <div class="gameweek">
+                Gameweek {{ selected_gameweek }}
+            </div>
+            <div class="total-points-div">
+                <div class="total-points-heading">
+                    Total Points -&nbsp;
+                </div>
+                <div class="points">
+                    {{ total }}
+                </div>
+            </div>
+        </div>
+
+        <div class="pitch-div">
+            <div class="pitch-background">
+
+                <!-- Goalkeeper Row -->
+                <div class="position-row">
+                    {% for player in gkp %}
+                        <button type="button" class="player-button">
+                            <div class="player-image-container">
+                                <img src="{% static 'assets/jerseys/GK/'|add:player.team.short_name|add:'_GK.webp' %}" alt="{{ player.player.web_name }}" class="player-image">
+                            </div>
+                            <div class="dreamteam-count">{{ player.dreamteam_count }}</div>
+                            <div class="player-info">
+                                <div class="player-name">{{ player.player.web_name }}</div>
+                                <div class="player-points">{{ player.points }}</div>
+                            </div>
+                        </button>
+                    {% endfor %}
+                </div>
+
+                <!-- Defenders Row -->
+                <div class="position-row">
+                    {% for player in def %}
+                        <button type="button" class="player-button">
+                            <div class="player-image-container">
+                                <img src="{% static 'assets/jerseys/PL/'|add:player.team.short_name|add:'.webp' %}" alt="{{ player.player.web_name }}" class="player-image">
+                            </div>
+                            <div class="dreamteam-count">{{ player.dreamteam_count }}</div>
+                            <div class="player-info">
+                                <div class="player-name">{{ player.player.web_name }}</div>
+                                <div class="player-points">{{ player.points }}</div>
+                            </div>
+                        </button>
+                    {% endfor %}
+                </div>
+
+                <!-- Midfielders Row -->
+                <div class="position-row">
+                    {% for player in mid %}
+                        <button type="button" class="player-button">
+                            <div class="player-image-container">
+                                <img src="{% static 'assets/jerseys/PL/'|add:player.team.short_name|add:'.webp' %}" alt="{{ player.player.web_name }}" class="player-image">
+                            </div>
+                            <div class="dreamteam-count">{{ player.dreamteam_count }}</div>
+                            <div class="player-info">
+                                <div class="player-name">{{ player.player.web_name }}</div>
+                                <div class="player-points">{{ player.points }}</div>
+                            </div>
+                        </button>
+                    {% endfor %}
+                </div>
+
+                <!-- Attackers Row -->
+                <div class="position-row">
+                    {% for player in fwd %}
+                        <button type="button" class="player-button">
+                            <div class="player-image-container">
+                                <img src="{% static 'assets/jerseys/PL/'|add:player.team.short_name|add:'.webp' %}" alt="{{ player.player.web_name }}" class="player-image">
+                            </div>
+                            <div class="dreamteam-count">{{ player.dreamteam_count }}</div>
+                            <div class="player-info">
+                                <div class="player-name">{{ player.player.web_name }}</div>
+                                <div class="player-points">{{ player.points }}</div>
+                            </div>
+                        </button>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

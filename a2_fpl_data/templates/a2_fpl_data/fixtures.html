@@ -1,0 +1,111 @@
+{% extends "a1_core/base.html" %}
+{% load static %}
+
+<!-- FPL Purple #37003c-->
+
+{% block content %}
+
+<div class="page-div">
+
+    <div class="left-sidebar">
+        <h3 class="bar-header">Gameweeks</h3>
+        <div class="sidebar-content">
+            {% for gameweek, count in fixture_count.items %}
+                <li class="bar-list">
+                    {% if gameweek == current_gameweek.gameweek %}
+                        {% if gameweek == selected_gameweek %}
+                            <a class ="bold" href="{% url 'fixtures' gameweek=gameweek %}">Gameweek {{ gameweek }} - CURRENT{% if count > 10 %} - DGW{% elif count < 10 %} - BGW{% else %}{% endif %}</a>
+                        {% else %}
+                            <a href="{% url 'fixtures' gameweek=gameweek %}">Gameweek {{ gameweek }} - CURRENT{% if count > 10 %} - DGW{% elif count < 10 %} - BGW{% else %}{% endif %}</a>
+                        {% endif %}
+                    {% else %}
+                        {% if gameweek == selected_gameweek %}
+                            <a class ="bold" href="{% url 'fixtures' gameweek=gameweek %}">Gameweek {{ gameweek }}{% if count > 10 %} - DGW{% elif count < 10 %} - BGW{% else %}{% endif %}</a>
+                        {% else %}
+                            <a href="{% url 'fixtures' gameweek=gameweek %}">Gameweek {{ gameweek }}{% if count > 10 %} - DGW{% elif count < 10 %} - BGW{% else %}{% endif %}</a>
+                        {% endif %}
+                    {% endif %}
+                        
+                </li>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="pitch-div-div">
+
+        <div class="summary">
+            <div class="gameweek gameweek-big">
+                Gameweek {{ selected_gameweek }}
+            </div>
+        </div>
+        <div class="deadline">
+            <span class="deadline-text">Deadline: {{ deadline_date }}: {{ deadline_time|time:"H:i" }}</span>
+        </div>
+
+        <div class="fixture-div">
+            {% for fixture_date in fixture_dates %}
+                <div class="fixture-set">
+                    <div class="fixture-date">
+                        <div class="fixture-date-background">
+                            <p class="fixture-date-text">{{ fixture_date }}</p>
+                        </div>
+                    </div>
+                {% for fixture in fixtures %}
+                    {% if fixture.kickoff_date == fixture_date %}
+                        <div class="fixture">
+                            <div class="strength-container">
+                                <div class="strength-indicator-div">
+                                    <span class="strength-heading">OVERALL</span>
+                                    <span class="strength-indicator" style="background-color: rgb({{ fixture.strength.team_h_overall.r_value }}, {{ fixture.strength.team_h_overall.g_value }}, 0, 0.8);">{{ fixture.strength.team_h_overall.value }}</span>
+                                    <span class="strength-rank">{{ fixture.strength.team_h_overall.rank }}</span>
+                                </div>
+                                <div class="strength-indicator-div">
+                                    <span class="strength-heading">ATTACK</span>
+                                    <span class="strength-indicator" style="background-color: rgb({{ fixture.strength.team_h_attack.r_value }}, {{ fixture.strength.team_h_attack.g_value }}, 0, 0.8);">{{ fixture.strength.team_h_attack.value }}</span>
+                                    <span class="strength-rank">{{ fixture.strength.team_h_attack.rank }}</span>
+                                </div>
+                                <div class="strength-indicator-div">
+                                    <span class="strength-heading">DEFENCE</span>
+                                    <span class="strength-indicator" style="background-color: rgb({{ fixture.strength.team_h_defence.r_value }}, {{ fixture.strength.team_h_defence.g_value }}, 0, 0.8);">{{ fixture.strength.team_h_defence.value }}</span>
+                                    <span class="strength-rank">{{ fixture.strength.team_h_defence.rank }}</span>
+                                </div>
+                            </div>
+                            <span class="fixture-team_h">{{ fixture.team_h.short_name }}</span>
+                            <span class="fixture-team_h-crest"><img class="fixture-crest-h" src="{{ fixture.team_h.logo_url }}"></span>
+                            {% if fixture.team_h_score is None %}
+                                <span class="kickoff_time">{{ fixture.kickoff_time|time:"H:i" }}</span>
+                            {% else %}
+                            <div class="kickoff_time">
+                                <span>{{ fixture.team_h_score }}</span> - 
+                                <span>{{ fixture.team_a_score }}</span>
+                            </div>
+                            {% endif %}
+                            <span class="fixture-team_a-crest"><img class="fixture-crest-a" src="{{ fixture.team_a.logo_url }}"></span>
+                            <span class="fixture-team_a">{{ fixture.team_a.short_name }}</span>
+                            <div class="strength-container">
+                                <div class="strength-indicator-div">
+                                    <span class="strength-heading">OVERALL</span>
+                                    <span class="strength-indicator" style="background-color: rgb({{ fixture.strength.team_a_overall.r_value }}, {{ fixture.strength.team_a_overall.g_value }}, 0, 0.8);">{{ fixture.strength.team_a_overall.value }}</span>
+                                    <span class="strength-rank">{{ fixture.strength.team_a_overall.rank }}</span>
+                                </div>
+                                <div class="strength-indicator-div">
+                                    <span class="strength-heading">ATTACK</span>
+                                    <span class="strength-indicator" style="background-color: rgb({{ fixture.strength.team_a_attack.r_value }}, {{ fixture.strength.team_a_attack.g_value }}, 0, 0.8);">{{ fixture.strength.team_a_attack.value }}</span>
+                                    <span class="strength-rank">{{ fixture.strength.team_a_attack.rank }}</span>
+                                </div>
+                                <div class="strength-indicator-div">
+                                    <span class="strength-heading">DEFENCE</span>
+                                    <span class="strength-indicator" style="background-color: rgb({{ fixture.strength.team_a_defence.r_value }}, {{ fixture.strength.team_a_defence.g_value }}, 0, 0.8);">{{ fixture.strength.team_a_defence.value }}</span>
+                                    <span class="strength-rank">{{ fixture.strength.team_a_defence.rank }}</span>
+                                </div>
+                            </div>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+{% endblock %}

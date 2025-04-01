@@ -1,0 +1,38 @@
+{% load static %}
+
+<head>
+    <link href="//www.premierleague.com/resources/rebrand/v7.153.51/ism/css/ism.css" rel="stylesheet"/>
+    <link href="https://fonts.gstatic.com" rel="preconnect"/>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&amp;display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=PremierSans&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'assets/css/style.css' %}?version=1">
+</head>
+<body>
+    <div class="navbar">
+        <img class="logo" src="{% static 'assets/pl-main-logo-colour.png' %}">
+        {% if finished == True %}
+            <button onclick="window.location.href='{% url 'dreamteam' gameweek %}';" class="navbar-item"> 
+        {% else %}
+            <button onclick="window.location.href='{% url 'dreamteam' gameweek_previous %}';" class="navbar-item">     
+        {% endif %}
+            Dreamteams
+        </button>
+        <button onclick="window.location.href='{% url 'ep' %}';" class="navbar-item">
+            Expected Points
+        </button>
+        <button onclick="window.location.href='{% url 'fixtures' gameweek_next %}';"class="navbar-item">
+            Fixtures
+        </button>
+        <button onclick="window.location.href='{% url 'ict' %}';"class="navbar-item">
+            Stats
+        </button>
+
+    </div>
+    <script src="{% static 'assets/js/script_ep.js' %}"></script>
+    <script src="{% static 'assets/js/script_ict.js' %}"></script>
+    <script src="{% static 'assets/js/script_global.js' %}"></script>
+</body>
+{% block content %}
+{% endblock %}
+<footer>
+</footer>

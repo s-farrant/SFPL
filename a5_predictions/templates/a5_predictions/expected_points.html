@@ -1,0 +1,175 @@
+{% extends "a1_core/base.html" %}
+{% load static %}
+
+{% block content %}
+
+<div class="page-div">
+
+    <div class="left-sidebar">
+        <h3 class="bar-header">Expected Points</h3>
+        <div class="bar-button-div">
+            <button class="bar-button" id="bar-button-all">ALL</button>
+            <button class="bar-button" id="bar-button-gkp">GKP</button>
+            <button class="bar-button" id="bar-button-def">DEF</button>
+            <button class="bar-button" id="bar-button-mid">MID</button>
+            <button class="bar-button" id="bar-button-fwd">FWD</button>
+        </div>
+
+        <!-- All -->
+        <div class="sidebar-content"  id="side-bar-with-buttons-all">
+            {% for player in all %}
+            <div class="bar-list">
+                <img class="sidebar-crest" src="{{ player.team.logo_url }}">
+                <span class="player-name-sidebar">{{ player.player.web_name }} - {{ player.player.position.name_short }}</span>
+                <span class="player-points-sidebar">{{ player.ep_next }}</span>
+            </div>
+            {% endfor %}
+        </div>
+
+        <!--- GKP -->
+        <div class="sidebar-content"  id="side-bar-with-buttons-gkp">
+            {% for player in all_gkp %}
+            <div class="bar-list">
+                <img class="sidebar-crest" src="{{ player.team.logo_url }}">
+                <span class="player-name-sidebar">{{ player.player.web_name }} - {{ player.player.position.name_short }}</span>
+                <span class="player-points-sidebar">{{ player.ep_next }}</span>
+            </div>
+            {% endfor %}
+        </div>
+
+        <!--- DEF -->
+        <div class="sidebar-content"  id="side-bar-with-buttons-def">
+            {% for player in all_def %}
+            <div class="bar-list">
+                <img class="sidebar-crest" src="{{ player.team.logo_url }}">
+                <span class="player-name-sidebar">{{ player.player.web_name }} - {{ player.player.position.name_short }}</span>
+                <span class="player-points-sidebar">{{ player.ep_next }}</span>
+            </div>
+            {% endfor %}
+        </div>
+
+        <!--- MID -->
+        <div class="sidebar-content"  id="side-bar-with-buttons-mid">
+            {% for player in all_mid %}
+            <div class="bar-list">
+                <img class="sidebar-crest" src="{{ player.team.logo_url }}">
+                <span class="player-name-sidebar">{{ player.player.web_name }} - {{ player.player.position.name_short }}</span>
+                <span class="player-points-sidebar">{{ player.ep_next }}</span>
+            </div>
+            {% endfor %}
+        </div>
+
+        <!--- FWD -->
+        <div class="sidebar-content"  id="side-bar-with-buttons-fwd">
+            {% for player in all_fwd %}
+            <div class="bar-list">
+                <img class="sidebar-crest" src="{{ player.team.logo_url }}">
+                <span class="player-name-sidebar">{{ player.player.web_name }} - {{ player.player.position.name_short }}</span>
+                <span class="player-points-sidebar">{{ player.ep_next }}</span>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="pitch-div-div">
+
+        <div class="summary">
+            <div class="total-points-div">
+                <div class="total-points-heading">
+                    Total Expected Points -&nbsp;
+                </div>
+                <div class="points">
+                    {{ total }}
+                </div>
+            </div>
+        </div>
+
+        <div class="pitch-div">
+            <div class="pitch-background">
+
+                <!-- Goalkeeper Row -->
+                <div class="position-row">
+                    {% for player in gkp %}
+                    <button type="button" class="player-button">
+                        {% if player.location == "Away" %}
+                            <div class="player-oppo"><span class="player-oppo-text">{{ player.opponent }}, A</span></div>
+                        {% else %}
+                        <div class="player-oppo"><span class="player-oppo-text">{{ player.opponent }}, H</span></div>
+                        {% endif %}
+                        <div class="player-image-container">
+                            <img src="{% static 'assets/jerseys/GK/'|add:player.team.short_name|add:'_GK.webp' %}" alt="{{ player.name }}" class="player-image">
+                        </div>
+                        <div class="player-info">
+                            <div class="player-name">{{ player.player.web_name }}</div>
+                            <div class="player-points">{{ player.ep_next }}</div>
+                        </div>
+                    </button>
+                    {% endfor %}
+                </div>
+
+                <!-- Defenders Row -->
+                <div class="position-row">
+                    {% for player in def %}
+                    <button type="button" class="player-button">
+                        {% if player.location == "Away" %}
+                            <div class="player-oppo"><span class="player-oppo-text">{{ player.opponent }}, A</span></div>
+                        {% else %}
+                        <div class="player-oppo"><span class="player-oppo-text">{{ player.opponent }}, H</span></div>
+                        {% endif %}
+                        <div class="player-image-container">
+                            <img src="{% static 'assets/jerseys/PL/'|add:player.team.short_name|add:'.webp' %}" alt="{{ player.name }}" class="player-image">
+                        </div>
+                        <div class="player-info">
+                            <div class="player-name">{{ player.player.web_name }}</div>
+                            <div class="player-points">{{ player.ep_next }}</div>
+                        </div>
+                    </button>
+                    {% endfor %}
+                </div>
+
+                <!-- Midfielders Row -->
+                <div class="position-row">
+                    {% for player in mid %}
+                    <button type="button" class="player-button">
+                        {% if player.location == "Away" %}
+                            <div class="player-oppo"><span class="player-oppo-text">{{ player.opponent }}, A</span></div>
+                        {% else %}
+                        <div class="player-oppo"><span class="player-oppo-text">{{ player.opponent }}, H</span></div>
+                        {% endif %}
+                        <div class="player-image-container">
+                            <img src="{% static 'assets/jerseys/PL/'|add:player.team.short_name|add:'.webp' %}" alt="{{ player.name }}" class="player-image">
+                        </div>
+                        <div class="player-info">
+                            <div class="player-name">{{ player.player.web_name }}</div>
+                            <div class="player-points">{{ player.ep_next }}</div>
+                        </div>
+                    </button>
+                    {% endfor %}
+                </div>
+
+                <!-- Attackers Row -->
+                <div class="position-row">
+                    {% for player in fwd %}
+                    <button type="button" class="player-button">
+                        {% if player.location == "Away" %}
+                            <div class="player-oppo"><span class="player-oppo-text">{{ player.opponent }}, A</span></div>
+                        {% else %}
+                        <div class="player-oppo"><span class="player-oppo-text">{{ player.opponent }}, H</span></div>
+                        {% endif %}
+                        <div class="player-image-container">
+                            <img src="{% static 'assets/jerseys/PL/'|add:player.team.short_name|add:'.webp' %}" alt="{{ player.name }}" class="player-image">
+                        </div>
+                        <div class="player-info">
+                            <div class="player-name">{{ player.player.web_name }}</div>
+                            <div class="player-points">{{ player.ep_next }}</div>
+                        </div>
+                    </button>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

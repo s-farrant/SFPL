@@ -1,0 +1,690 @@
+{% extends "a1_core/base.html"%}
+{% load static %}
+
+{% block content %}
+
+<div class="page-div">
+
+    <div class="left-sidebar">
+        <h3 class="bar-header">Stats</h3>
+        <div class="sidebar-content">
+                <li class="bar-list">
+                            <a href="{% url 'ict' %}">ICT Stats</a>
+                </li>
+                <li class="bar-list">
+                    <a href="{% url 'in-game' %}">In-game Stats</a>
+                </li>
+                <li class="bar-list">
+                    <a href="{% url 'transfers' %}">Transfers</a>
+                </li>
+                <li class="bar-list">
+                    <a href="{% url 'player-value' %}">Player Value</a>
+                </li>
+        </div>
+    </div>
+
+
+    <div class="pitch-div-div stats-div">
+
+        <!-- Influence -->
+         
+        <div class="stat-column-div">
+            <div class="stat-button-title-div">
+                <div class="stat-title">Influence</div>
+                <button class="stat-filter" id="influence-all-button">ALL</button>
+                <button class="stat-filter" id="influence-gkp-button">GKP</button>
+                <button class="stat-filter" id="influence-def-button">DEF</button>
+                <button class="stat-filter" id="influence-mid-button">MID</button>
+                <button class="stat-filter" id="influence-fwd-button">FWD</button>
+            </div>
+
+            <!-- ALL -->
+
+            <div class="hide-scrollbar" id="influence-all">
+                <div class="stat-column">
+                    {% for player in sorted_influence %}
+                        {% if forloop.first %}
+                        <div class="bar-list-rank-first t{{ player.team.code }}">
+                            <div class="first-player-info">
+                                <span class="rank-sidebar-first">{{ player.ict_stats.influence_rank }}</span>
+                                <span class="player-first-name-sidebar-first">{{ player.player.first_name }}</span>
+                                <span class="second-name-container scaling-container"><span class="player-second-name-sidebar-first scaling">{{ player.player.second_name }}</span></span>
+                                <img class="sidebar-crest-first" src="{{ player.team.logo_url }}">
+                                <span class="player-points-sidebar-first">{{ player.ict_stats.influence }}</span>
+                            </div>
+                            <div class="first-player-image">
+                                <img src="https://resources.premierleague.com/premierleague/photos/players/110x140/p{{ player.player.photo|slice:":-4" }}.png">
+                            </div>
+                        </div>
+                        {% else %}
+                            <div class="bar-list-rank">
+                                <span class="rank-sidebar">{{ player.ict_stats.influence_rank }}</span>
+                                <img class="sidebar-crest" src="{{ player.team.logo_url }}">
+                                <span class="player-name-sidebar">{{ player.player.web_name }} - {{ player.player.position.name_short }}</span>
+                                <span class="player-points-sidebar">{{ player.ict_stats.influence }}</span>
+                            </div>
+                            {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+
+            <!-- GKP -->
+
+            <div class="hide-scrollbar" id="influence-gkp">
+                <div class="stat-column">
+                    {% for player in sorted_influence_gkp %}
+                        {% if forloop.first %}
+                        <div class="bar-list-rank-first t{{ player.team.code }}">
+                            <div class="first-player-info">
+                                <span class="rank-sidebar-first">{{ player.ict_stats.influence_rank_type }}</span>
+                                <span class="player-first-name-sidebar-first">{{ player.player.first_name }}</span>
+                                <span class="second-name-container scaling-container"><span class="player-second-name-sidebar-first scaling">{{ player.player.second_name }}</span></span>
+                                <img class="sidebar-crest-first" src="{{ player.team.logo_url }}">
+                                <span class="player-points-sidebar-first">{{ player.ict_stats.influence }}</span>
+                            </div>
+                            <div class="first-player-image">
+                                <img src="https://resources.premierleague.com/premierleague/photos/players/110x140/p{{ player.player.photo|slice:":-4" }}.png">
+                            </div>
+                        </div>
+                        {% else %}
+                            <div class="bar-list-rank">
+                                <span class="rank-sidebar">{{ player.ict_stats.influence_rank_type }}</span>
+                                <img class="sidebar-crest" src="{{ player.team.logo_url }}">
+                                <span class="player-name-sidebar">{{ player.player.web_name }}</span>
+                                <span class="player-points-sidebar">{{ player.ict_stats.influence }}</span>
+                            </div>
+                            {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+
+            <!-- DEF -->
+
+            <div class="hide-scrollbar" id="influence-def">
+                <div class="stat-column">
+                    {% for player in sorted_influence_def %}
+                        {% if forloop.first %}
+                        <div class="bar-list-rank-first t{{ player.team.code }}">
+                            <div class="first-player-info">
+                                <span class="rank-sidebar-first">{{ player.ict_stats.influence_rank_type }}</span>
+                                <span class="player-first-name-sidebar-first">{{ player.player.first_name }}</span>
+                                <span class="second-name-container scaling-container"><span class="player-second-name-sidebar-first scaling">{{ player.player.second_name }}</span></span>
+                                <img class="sidebar-crest-first" src="{{ player.team.logo_url }}">
+                                <span class="player-points-sidebar-first">{{ player.ict_stats.influence }}</span>
+                            </div>
+                            <div class="first-player-image">
+                                <img src="https://resources.premierleague.com/premierleague/photos/players/110x140/p{{ player.player.photo|slice:":-4" }}.png">
+                            </div>
+                        </div>
+                        {% else %}
+                            <div class="bar-list-rank">
+                                <span class="rank-sidebar">{{ player.ict_stats.influence_rank_type }}</span>
+                                <img class="sidebar-crest" src="{{ player.team.logo_url }}">
+                                <span class="player-name-sidebar">{{ player.player.web_name }}</span>
+                                <span class="player-points-sidebar">{{ player.ict_stats.influence }}</span>
+                            </div>
+                            {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+
+            <!-- MID -->
+
+            <div class="hide-scrollbar" id="influence-mid">
+                <div class="stat-column">
+                    {% for player in sorted_influence_mid %}
+                        {% if forloop.first %}
+                        <div class="bar-list-rank-first t{{ player.team.code }}">
+                            <div class="first-player-info">
+                                <span class="rank-sidebar-first">{{ player.ict_stats.influence_rank_type }}</span>
+                                <span class="player-first-name-sidebar-first">{{ player.player.first_name }}</span>
+                                <span class="second-name-container scaling-container"><span class="player-second-name-sidebar-first scaling">{{ player.player.second_name }}</span></span>
+                                <img class="sidebar-crest-first" src="{{ player.team.logo_url }}">
+                                <span class="player-points-sidebar-first">{{ player.ict_stats.influence }}</span>
+                            </div>
+                            <div class="first-player-image">
+                                <img src="https://resources.premierleague.com/premierleague/photos/players/110x140/p{{ player.player.photo|slice:":-4" }}.png">
+                            </div>
+                        </div>
+                        {% else %}
+                            <div class="bar-list-rank">
+                                <span class="rank-sidebar">{{ player.ict_stats.influence_rank_type }}</span>
+                                <img class="sidebar-crest" src="{{ player.team.logo_url }}">
+                                <span class="player-name-sidebar">{{ player.player.web_name }}</span>
+                                <span class="player-points-sidebar">{{ player.ict_stats.influence }}</span>
+                            </div>
+                            {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+
+            <!-- FWD -->
+
+            <div class="hide-scrollbar" id="influence-fwd">
+                <div class="stat-column">
+                    {% for player in sorted_influence_fwd %}
+                        {% if forloop.first %}
+                        <div class="bar-list-rank-first t{{ player.team.code }}">
+                            <div class="first-player-info">
+                                <span class="rank-sidebar-first">{{ player.ict_stats.influence_rank_type }}</span>
+                                <span class="player-first-name-sidebar-first">{{ player.player.first_name }}</span>
+                                <span class="second-name-container scaling-container"><span class="player-second-name-sidebar-first scaling">{{ player.player.second_name }}</span></span>
+                                <img class="sidebar-crest-first" src="{{ player.team.logo_url }}">
+                                <span class="player-points-sidebar-first">{{ player.ict_stats.influence }}</span>
+                            </div>
+                            <div class="first-player-image">
+                                <img src="https://resources.premierleague.com/premierleague/photos/players/110x140/p{{ player.player.photo|slice:":-4" }}.png">
+                            </div>
+                        </div>
+                        {% else %}
+                            <div class="bar-list-rank">
+                                <span class="rank-sidebar">{{ player.ict_stats.influence_rank_type }}</span>
+                                <img class="sidebar-crest" src="{{ player.team.logo_url }}">
+                                <span class="player-name-sidebar">{{ player.player.web_name }}</span>
+                                <span class="player-points-sidebar">{{ player.ict_stats.influence }}</span>
+                            </div>
+                            {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Creativity -->
+
+        <div class="stat-column-div">
+            <div class="stat-button-title-div">
+                <div class="stat-title">Creativity</div>
+                <button class="stat-filter" id="creativity-all-button">ALL</button>
+                <button class="stat-filter" id="creativity-gkp-button">GKP</button>
+                <button class="stat-filter" id="creativity-def-button">DEF</button>
+                <button class="stat-filter" id="creativity-mid-button">MID</button>
+                <button class="stat-filter" id="creativity-fwd-button">FWD</button>
+            </div>
+
+            <!-- ALL -->
+
+            <div class="hide-scrollbar" id="creativity-all">
+                <div class="stat-column">
+                    {% for player in sorted_creativity %}
+                        {% if forloop.first %}
+                        <div class="bar-list-rank-first t{{ player.team.code }}">
+                            <div class="first-player-info">
+                                <span class="rank-sidebar-first">{{ player.ict_stats.creativity_rank }}</span>
+                                <span class="player-first-name-sidebar-first">{{ player.player.first_name }}</span>
+                                <span class="second-name-container scaling-container"><span class="player-second-name-sidebar-first scaling">{{ player.player.second_name }}</span></span>
+                                <img class="sidebar-crest-first" src="{{ player.team.logo_url }}">
+                                <span class="player-points-sidebar-first">{{ player.ict_stats.creativity }}</span>
+                            </div>
+                            <div class="first-player-image">
+                                <img src="https://resources.premierleague.com/premierleague/photos/players/110x140/p{{ player.player.photo|slice:":-4" }}.png">
+                            </div>
+                        </div>
+                        {% else %}
+                            <div class="bar-list-rank">
+                                <span class="rank-sidebar">{{ player.ict_stats.creativity_rank }}</span>
+                                <img class="sidebar-crest" src="{{ player.team.logo_url }}">
+                                <span class="player-name-sidebar">{{ player.player.web_name }} - {{ player.player.position.name_short }}</span>
+                                <span class="player-points-sidebar">{{ player.ict_stats.creativity }}</span>
+                            </div>
+                            {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+
+            <!-- GKP -->
+
+            <div class="hide-scrollbar" id="creativity-gkp">
+                <div class="stat-column">
+                    {% for player in sorted_creativity_gkp %}
+                        {% if forloop.first %}
+                        <div class="bar-list-rank-first t{{ player.team.code }}">
+                            <div class="first-player-info">
+                                <span class="rank-sidebar-first">{{ player.ict_stats.creativity_rank_type }}</span>
+                                <span class="player-first-name-sidebar-first">{{ player.player.first_name }}</span>
+                                <span class="second-name-container scaling-container"><span class="player-second-name-sidebar-first scaling">{{ player.player.second_name }}</span></span>
+                                <img class="sidebar-crest-first" src="{{ player.team.logo_url }}">
+                                <span class="player-points-sidebar-first">{{ player.ict_stats.creativity }}</span>
+                            </div>
+                            <div class="first-player-image">
+                                <img src="https://resources.premierleague.com/premierleague/photos/players/110x140/p{{ player.player.photo|slice:":-4" }}.png">
+                            </div>
+                        </div>
+                        {% else %}
+                            <div class="bar-list-rank">
+                                <span class="rank-sidebar">{{ player.ict_stats.creativity_rank_type }}</span>
+                                <img class="sidebar-crest" src="{{ player.team.logo_url }}">
+                                <span class="player-name-sidebar">{{ player.player.web_name }}</span>
+                                <span class="player-points-sidebar">{{ player.ict_stats.creativity }}</span>
+                            </div>
+                            {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+
+            <!-- DEF -->
+
+            <div class="hide-scrollbar" id="creativity-def">
+                <div class="stat-column">
+                    {% for player in sorted_creativity_def %}
+                        {% if forloop.first %}
+                        <div class="bar-list-rank-first t{{ player.team.code }}">
+                            <div class="first-player-info">
+                                <span class="rank-sidebar-first">{{ player.ict_stats.creativity_rank_type }}</span>
+                                <span class="player-first-name-sidebar-first">{{ player.player.first_name }}</span>
+                                <span class="second-name-container scaling-container"><span class="player-second-name-sidebar-first scaling">{{ player.player.second_name }}</span></span>
+                                <img class="sidebar-crest-first" src="{{ player.team.logo_url }}">
+                                <span class="player-points-sidebar-first">{{ player.ict_stats.creativity }}</span>
+                            </div>
+                            <div class="first-player-image">
+                                <img src="https://resources.premierleague.com/premierleague/photos/players/110x140/p{{ player.player.photo|slice:":-4" }}.png">
+                            </div>
+                        </div>
+                        {% else %}
+                            <div class="bar-list-rank">
+                                <span class="rank-sidebar">{{ player.ict_stats.creativity_rank_type }}</span>
+                                <img class="sidebar-crest" src="{{ player.team.logo_url }}">
+                                <span class="player-name-sidebar">{{ player.player.web_name }}</span>
+                                <span class="player-points-sidebar">{{ player.ict_stats.creativity }}</span>
+                            </div>
+                            {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+
+            <!-- MID -->
+
+            <div class="hide-scrollbar" id="creativity-mid">
+                <div class="stat-column">
+                    {% for player in sorted_creativity_mid %}
+                        {% if forloop.first %}
+                        <div class="bar-list-rank-first t{{ player.team.code }}">
+                            <div class="first-player-info">
+                                <span class="rank-sidebar-first">{{ player.ict_stats.creativity_rank_type }}</span>
+                                <span class="player-first-name-sidebar-first">{{ player.player.first_name }}</span>
+                                <span class="second-name-container scaling-container"><span class="player-second-name-sidebar-first scaling">{{ player.player.second_name }}</span></span>
+                                <img class="sidebar-crest-first" src="{{ player.team.logo_url }}">
+                                <span class="player-points-sidebar-first">{{ player.ict_stats.creativity }}</span>
+                            </div>
+                            <div class="first-player-image">
+                                <img src="https://resources.premierleague.com/premierleague/photos/players/110x140/p{{ player.player.photo|slice:":-4" }}.png">
+                            </div>
+                        </div>
+                        {% else %}
+                            <div class="bar-list-rank">
+                                <span class="rank-sidebar">{{ player.ict_stats.creativity_rank_type }}</span>
+                                <img class="sidebar-crest" src="{{ player.team.logo_url }}">
+                                <span class="player-name-sidebar">{{ player.player.web_name }}</span>
+                                <span class="player-points-sidebar">{{ player.ict_stats.creativity }}</span>
+                            </div>
+                            {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+
+            <!-- FWD -->
+
+            <div class="hide-scrollbar" id="creativity-fwd">
+                <div class="stat-column">
+                    {% for player in sorted_creativity_fwd %}
+                        {% if forloop.first %}
+                        <div class="bar-list-rank-first t{{ player.team.code }}">
+                            <div class="first-player-info">
+                                <span class="rank-sidebar-first">{{ player.ict_stats.creativity_rank_type }}</span>
+                                <span class="player-first-name-sidebar-first">{{ player.player.first_name }}</span>
+                                <span class="second-name-container scaling-container"><span class="player-second-name-sidebar-first scaling">{{ player.player.second_name }}</span></span>
+                                <img class="sidebar-crest-first" src="{{ player.team.logo_url }}">
+                                <span class="player-points-sidebar-first">{{ player.ict_stats.creativity }}</span>
+                            </div>
+                            <div class="first-player-image">
+                                <img src="https://resources.premierleague.com/premierleague/photos/players/110x140/p{{ player.player.photo|slice:":-4" }}.png">
+                            </div>
+                        </div>
+                        {% else %}
+                            <div class="bar-list-rank">
+                                <span class="rank-sidebar">{{ player.ict_stats.creativity_rank_type }}</span>
+                                <img class="sidebar-crest" src="{{ player.team.logo_url }}">
+                                <span class="player-name-sidebar">{{ player.player.web_name }}</span>
+                                <span class="player-points-sidebar">{{ player.ict_stats.creativity }}</span>
+                            </div>
+                            {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Threat -->
+
+        <div class="stat-column-div">
+            <div class="stat-button-title-div">
+                <div class="stat-title">Threat</div>
+                <button class="stat-filter" id="threat-all-button">ALL</button>
+                <button class="stat-filter" id="threat-gkp-button">GKP</button>
+                <button class="stat-filter" id="threat-def-button">DEF</button>
+                <button class="stat-filter" id="threat-mid-button">MID</button>
+                <button class="stat-filter" id="threat-fwd-button">FWD</button>
+            </div>
+
+            <!-- ALL -->
+
+            <div class="hide-scrollbar" id="threat-all">
+                <div class="stat-column">
+                    {% for player in sorted_threat %}
+                        {% if forloop.first %}
+                        <div class="bar-list-rank-first t{{ player.team.code }}">
+                            <div class="first-player-info">
+                                <span class="rank-sidebar-first">{{ player.ict_stats.threat_rank }}</span>
+                                <span class="player-first-name-sidebar-first">{{ player.player.first_name }}</span>
+                                <span class="second-name-container"><span class="player-second-name-sidebar-first">{{ player.player.second_name }}</span></span>
+                                <img class="sidebar-crest-first" src="{{ player.team.logo_url }}">
+                                <span class="player-points-sidebar-first">{{ player.ict_stats.threat }}</span>
+                            </div>
+                            <div class="first-player-image">
+                                <img src="https://resources.premierleague.com/premierleague/photos/players/110x140/p{{ player.player.photo|slice:":-4" }}.png">
+                            </div>
+                        </div>
+                        {% else %}
+                            <div class="bar-list-rank">
+                                <span class="rank-sidebar">{{ player.ict_stats.threat_rank }}</span>
+                                <img class="sidebar-crest" src="{{ player.team.logo_url }}">
+                                <span class="player-name-sidebar">{{ player.player.web_name }} - {{ player.player.position.name_short }}</span>
+                                <span class="player-points-sidebar">{{ player.ict_stats.threat }}</span>
+                            </div>
+                            {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+
+            <!-- GKP -->
+
+            <div class="hide-scrollbar" id="threat-gkp">
+                <div class="stat-column">
+                    {% for player in sorted_threat_gkp %}
+                        {% if forloop.first %}
+                        <div class="bar-list-rank-first t{{ player.team.code }}">
+                            <div class="first-player-info">
+                                <span class="rank-sidebar-first">{{ player.ict_stats.threat_rank_type }}</span>
+                                <span class="player-first-name-sidebar-first">{{ player.player.first_name }}</span>
+                                <span class="second-name-container"><span class="player-second-name-sidebar-first">{{ player.player.second_name }}</span></span>
+                                <img class="sidebar-crest-first" src="{{ player.team.logo_url }}">
+                                <span class="player-points-sidebar-first">{{ player.ict_stats.threat }}</span>
+                            </div>
+                            <div class="first-player-image">
+                                <img src="https://resources.premierleague.com/premierleague/photos/players/110x140/p{{ player.player.photo|slice:":-4" }}.png">
+                            </div>
+                        </div>
+                        {% else %}
+                            <div class="bar-list-rank">
+                                <span class="rank-sidebar">{{ player.ict_stats.threat_rank_type }}</span>
+                                <img class="sidebar-crest" src="{{ player.team.logo_url }}">
+                                <span class="player-name-sidebar">{{ player.player.web_name }}</span>
+                                <span class="player-points-sidebar">{{ player.ict_stats.threat }}</span>
+                            </div>
+                            {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+
+            <!-- DEF -->
+
+            <div class="hide-scrollbar" id="threat-def">
+                <div class="stat-column">
+                    {% for player in sorted_threat_def %}
+                        {% if forloop.first %}
+                        <div class="bar-list-rank-first t{{ player.team.code }}">
+                            <div class="first-player-info">
+                                <span class="rank-sidebar-first">{{ player.ict_stats.threat_rank_type }}</span>
+                                <span class="player-first-name-sidebar-first">{{ player.player.first_name }}</span>
+                                <span class="second-name-container"><span class="player-second-name-sidebar-first">{{ player.player.second_name }}</span></span>
+                                <img class="sidebar-crest-first" src="{{ player.team.logo_url }}">
+                                <span class="player-points-sidebar-first">{{ player.ict_stats.threat }}</span>
+                            </div>
+                            <div class="first-player-image">
+                                <img src="https://resources.premierleague.com/premierleague/photos/players/110x140/p{{ player.player.photo|slice:":-4" }}.png">
+                            </div>
+                        </div>
+                        {% else %}
+                            <div class="bar-list-rank">
+                                <span class="rank-sidebar">{{ player.ict_stats.threat_rank_type }}</span>
+                                <img class="sidebar-crest" src="{{ player.team.logo_url }}">
+                                <span class="player-name-sidebar">{{ player.player.web_name }}</span>
+                                <span class="player-points-sidebar">{{ player.ict_stats.threat }}</span>
+                            </div>
+                            {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+
+            <!-- MID -->
+
+            <div class="hide-scrollbar" id="threat-mid">
+                <div class="stat-column">
+                    {% for player in sorted_threat_mid %}
+                        {% if forloop.first %}
+                        <div class="bar-list-rank-first t{{ player.team.code }}">
+                            <div class="first-player-info">
+                                <span class="rank-sidebar-first">{{ player.ict_stats.threat_rank_type }}</span>
+                                <span class="player-first-name-sidebar-first">{{ player.player.first_name }}</span>
+                                <span class="second-name-container"><span class="player-second-name-sidebar-first">{{ player.player.second_name }}</span></span>
+                                <img class="sidebar-crest-first" src="{{ player.team.logo_url }}">
+                                <span class="player-points-sidebar-first">{{ player.ict_stats.threat }}</span>
+                            </div>
+                            <div class="first-player-image">
+                                <img src="https://resources.premierleague.com/premierleague/photos/players/110x140/p{{ player.player.photo|slice:":-4" }}.png">
+                            </div>
+                        </div>
+                        {% else %}
+                            <div class="bar-list-rank">
+                                <span class="rank-sidebar">{{ player.ict_stats.threat_rank_type }}</span>
+                                <img class="sidebar-crest" src="{{ player.team.logo_url }}">
+                                <span class="player-name-sidebar">{{ player.player.web_name }}</span>
+                                <span class="player-points-sidebar">{{ player.ict_stats.threat }}</span>
+                            </div>
+                            {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+
+            <!-- FWD -->
+
+            <div class="hide-scrollbar" id="threat-fwd">
+                <div class="stat-column">
+                    {% for player in sorted_threat_fwd %}
+                        {% if forloop.first %}
+                        <div class="bar-list-rank-first t{{ player.team.code }}">
+                            <div class="first-player-info">
+                                <span class="rank-sidebar-first">{{ player.ict_stats.threat_rank_type }}</span>
+                                <span class="player-first-name-sidebar-first">{{ player.player.first_name }}</span>
+                                <span class="second-name-container"><span class="player-second-name-sidebar-first">{{ player.player.second_name }}</span></span>
+                                <img class="sidebar-crest-first" src="{{ player.team.logo_url }}">
+                                <span class="player-points-sidebar-first">{{ player.ict_stats.threat }}</span>
+                            </div>
+                            <div class="first-player-image">
+                                <img src="https://resources.premierleague.com/premierleague/photos/players/110x140/p{{ player.player.photo|slice:":-4" }}.png">
+                            </div>
+                        </div>
+                        {% else %}
+                            <div class="bar-list-rank">
+                                <span class="rank-sidebar">{{ player.ict_stats.threat_rank_type }}</span>
+                                <img class="sidebar-crest" src="{{ player.team.logo_url }}">
+                                <span class="player-name-sidebar">{{ player.player.web_name }}</span>
+                                <span class="player-points-sidebar">{{ player.ict_stats.threat }}</span>
+                            </div>
+                            {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+
+        </div>
+
+        <!-- ICT Index -->
+
+        <div class="stat-column-div">
+            <div class="stat-button-title-div">
+                <div class="stat-title">ICT Index</div>
+                <button class="stat-filter" id="ict-all-button">ALL</button>
+                <button class="stat-filter" id="ict-gkp-button">GKP</button>
+                <button class="stat-filter" id="ict-def-button">DEF</button>
+                <button class="stat-filter" id="ict-mid-button">MID</button>
+                <button class="stat-filter" id="ict-fwd-button">FWD</button>
+            </div>
+
+            <!-- ALL -->
+            
+            <div class="hide-scrollbar" id="ict-all">
+                <div class="stat-column">
+                    {% for player in sorted_ict %}
+                        {% if forloop.first %}
+                        <div class="bar-list-rank-first t{{ player.team.code }}">
+                            <div class="first-player-info">
+                                <span class="rank-sidebar-first">{{ player.ict_stats.ict_index_rank }}</span>
+                                <span class="player-first-name-sidebar-first">{{ player.player.first_name }}</span>
+                                <span class="second-name-container scaling-container"><span class="player-second-name-sidebar-first scaling">{{ player.player.second_name }}</span></span>
+                                <img class="sidebar-crest-first" src="{{ player.team.logo_url }}">
+                                <span class="player-points-sidebar-first">{{ player.ict_stats.ict_index }}</span>
+                            </div>
+                            <div class="first-player-image">
+                                <img src="https://resources.premierleague.com/premierleague/photos/players/110x140/p{{ player.player.photo|slice:":-4" }}.png">
+                            </div>
+                        </div>
+                        {% else %}
+                            <div class="bar-list-rank">
+                                <span class="rank-sidebar">{{ player.ict_stats.ict_index_rank }}</span>
+                                <img class="sidebar-crest" src="{{ player.team.logo_url }}">
+                                <span class="player-name-sidebar">{{ player.player.web_name }} - {{ player.player.position.name_short }}</span>
+                                <span class="player-points-sidebar">{{ player.ict_stats.ict_index }}</span>
+                            </div>
+                            {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+
+            <!-- GKP -->
+            
+            <div class="hide-scrollbar" id="ict-gkp">
+                <div class="stat-column">
+                    {% for player in sorted_ict_gkp %}
+                        {% if forloop.first %}
+                        <div class="bar-list-rank-first t{{ player.team.code }}">
+                            <div class="first-player-info">
+                                <span class="rank-sidebar-first">{{ player.ict_stats.ict_index_rank_type }}</span>
+                                <span class="player-first-name-sidebar-first">{{ player.player.first_name }}</span>
+                                <span class="second-name-container scaling-container"><span class="player-second-name-sidebar-first scaling">{{ player.player.second_name }}</span></span>
+                                <img class="sidebar-crest-first" src="{{ player.team.logo_url }}">
+                                <span class="player-points-sidebar-first">{{ player.ict_stats.ict_index }}</span>
+                            </div>
+                            <div class="first-player-image">
+                                <img src="https://resources.premierleague.com/premierleague/photos/players/110x140/p{{ player.player.photo|slice:":-4" }}.png">
+                            </div>
+                        </div>
+                        {% else %}
+                            <div class="bar-list-rank">
+                                <span class="rank-sidebar">{{ player.ict_stats.ict_index_rank_type }}</span>
+                                <img class="sidebar-crest" src="{{ player.team.logo_url }}">
+                                <span class="player-name-sidebar">{{ player.player.web_name }}</span>
+                                <span class="player-points-sidebar">{{ player.ict_stats.ict_index }}</span>
+                            </div>
+                            {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+            <!-- DEF -->
+            
+            <div class="hide-scrollbar" id="ict-def">
+                <div class="stat-column">
+                    {% for player in sorted_ict_def %}
+                        {% if forloop.first %}
+                        <div class="bar-list-rank-first t{{ player.team.code }}">
+                            <div class="first-player-info">
+                                <span class="rank-sidebar-first">{{ player.ict_stats.ict_index_rank_type }}</span>
+                                <span class="player-first-name-sidebar-first">{{ player.player.first_name }}</span>
+                                <span class="second-name-container scaling-container"><span class="player-second-name-sidebar-first scaling">{{ player.player.second_name }}</span></span>
+                                <img class="sidebar-crest-first" src="{{ player.team.logo_url }}">
+                                <span class="player-points-sidebar-first">{{ player.ict_stats.ict_index }}</span>
+                            </div>
+                            <div class="first-player-image">
+                                <img src="https://resources.premierleague.com/premierleague/photos/players/110x140/p{{ player.player.photo|slice:":-4" }}.png">
+                            </div>
+                        </div>
+                        {% else %}
+                            <div class="bar-list-rank">
+                                <span class="rank-sidebar">{{ player.ict_stats.ict_index_rank_type }}</span>
+                                <img class="sidebar-crest" src="{{ player.team.logo_url }}">
+                                <span class="player-name-sidebar">{{ player.player.web_name }}</span>
+                                <span class="player-points-sidebar">{{ player.ict_stats.ict_index }}</span>
+                            </div>
+                            {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+
+            <!-- MID -->
+            
+            <div class="hide-scrollbar" id="ict-mid">
+                <div class="stat-column">
+                    {% for player in sorted_ict_mid %}
+                        {% if forloop.first %}
+                        <div class="bar-list-rank-first t{{ player.team.code }}">
+                            <div class="first-player-info">
+                                <span class="rank-sidebar-first">{{ player.ict_stats.ict_index_rank_type }}</span>
+                                <span class="player-first-name-sidebar-first">{{ player.player.first_name }}</span>
+                                <span class="second-name-container scaling-container"><span class="player-second-name-sidebar-first scaling">{{ player.player.second_name }}</span></span>
+                                <img class="sidebar-crest-first" src="{{ player.team.logo_url }}">
+                                <span class="player-points-sidebar-first">{{ player.ict_stats.ict_index }}</span>
+                            </div>
+                            <div class="first-player-image">
+                                <img src="https://resources.premierleague.com/premierleague/photos/players/110x140/p{{ player.player.photo|slice:":-4" }}.png">
+                            </div>
+                        </div>
+                        {% else %}
+                            <div class="bar-list-rank">
+                                <span class="rank-sidebar">{{ player.ict_stats.ict_index_rank_type }}</span>
+                                <img class="sidebar-crest" src="{{ player.team.logo_url }}">
+                                <span class="player-name-sidebar">{{ player.player.web_name }}</span>
+                                <span class="player-points-sidebar">{{ player.ict_stats.ict_index }}</span>
+                            </div>
+                            {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+
+            <!-- FWD -->
+            
+            <div class="hide-scrollbar" id="ict-fwd">
+                <div class="stat-column">
+                    {% for player in sorted_ict_fwd %}
+                        {% if forloop.first %}
+                        <div class="bar-list-rank-first t{{ player.team.code }}">
+                            <div class="first-player-info">
+                                <span class="rank-sidebar-first">{{ player.ict_stats.ict_index_rank_type }}</span>
+                                <span class="player-first-name-sidebar-first">{{ player.player.first_name }}</span>
+                                <span class="second-name-container scaling-container"><span class="player-second-name-sidebar-first scaling">{{ player.player.second_name }}</span></span>
+                                <img class="sidebar-crest-first" src="{{ player.team.logo_url }}">
+                                <span class="player-points-sidebar-first">{{ player.ict_stats.ict_index }}</span>
+                            </div>
+                            <div class="first-player-image">
+                                <img src="https://resources.premierleague.com/premierleague/photos/players/110x140/p{{ player.player.photo|slice:":-4" }}.png">
+                            </div>
+                        </div>
+                        {% else %}
+                            <div class="bar-list-rank">
+                                <span class="rank-sidebar">{{ player.ict_stats.ict_index_rank_type }}</span>
+                                <img class="sidebar-crest" src="{{ player.team.logo_url }}">
+                                <span class="player-name-sidebar">{{ player.player.web_name }}</span>
+                                <span class="player-points-sidebar">{{ player.ict_stats.ict_index }}</span>
+                            </div>
+                            {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+</div>
+
+{% endblock %}
+
+
