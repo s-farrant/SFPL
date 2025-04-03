@@ -153,30 +153,40 @@ LOGGING = {
     },
     'handlers': {
         'console': {
-            'level': 'DEBUG',  # Show all logs of DEBUG level and above
+            'level': 'DEBUG',
             'class': 'logging.StreamHandler',
             'formatter': 'simple',
+        },
+        'mc_file': {
+            'level': 'INFO',
+            'class': 'logging.FileHandler',
+            'filename': os.path.join(BASE_DIR, 'logs/management_command.log'),
         },
     },
     'loggers': {
         'django': {
             'handlers': ['console'],
-            'level': 'INFO',  # Set this to INFO to suppress debug-level messages
+            'level': 'INFO',  
             'propagate': False,
         },
         'django.db.backends': {
-            'level': 'ERROR',  # Suppress SQL queries (only show ERROR level SQL queries)
+            'level': 'ERROR',  
             'handlers': ['console'],
             'propagate': False,
         },
         'django.server': {
-            'level': 'ERROR',  # Suppress GET/POST HTTP requests (only show errors)
+            'level': 'ERROR',  
             'handlers': ['console'],
             'propagate': False,
         },
-        'a2_fpl_data': {  # Replace with the name of your app or the logger you want to see
+        'mc_run': { 
+            'handlers': ['mc_file'],
+            'level': 'INFO',
+            'propagate': False,
+        },
+        'a2_fpl_data': {  
             'handlers': ['console'],
-            'level': 'DEBUG',  # Log all messages for your app
+            'level': 'DEBUG', 
         },
     },
 }

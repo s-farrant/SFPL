@@ -10,11 +10,7 @@
 <body>
     <div class="navbar">
         <img class="logo" src="{% static 'assets/pl-main-logo-colour.png' %}">
-        {% if finished == True %}
-            <button onclick="window.location.href='{% url 'dreamteam' gameweek %}';" class="navbar-item"> 
-        {% else %}
-            <button onclick="window.location.href='{% url 'dreamteam' gameweek_previous %}';" class="navbar-item">     
-        {% endif %}
+            <button onclick="window.location.href='{% url 'dreamteam' gameweek %}';" class="navbar-item">    
             Dreamteams
         </button>
         <button onclick="window.location.href='{% url 'ep' %}';" class="navbar-item">

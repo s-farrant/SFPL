@@ -1,15 +1,15 @@
 import requests
-from django.core.mail import send_mail
-from django.conf import settings
-import traceback
 from django.core.management.base import BaseCommand
 from a2_fpl_data.models import Player, Gameweek
 from a4_analytics.models import PlayerDynamicData
+import logging
+import datetime
 
 class Command(BaseCommand):
     help = "Fetches player data from the Bootstrap Static API and saves to the database"
 
     def handle(self, *args, **kwargs):
+        run_log = logging.getLogger('mc_run')
 
         try:
         
@@ -17,18 +17,20 @@ class Command(BaseCommand):
 
             bootstrap = requests.get(URL).json()
 
-            players = bootstrap['elements'] # send request to URL, put into JSON and filter just the 'teams' part
+            players = bootstrap['elements']
 
             for gameweek in bootstrap['events']:
                 if gameweek['is_current'] == True:
                     gameweek_current = gameweek['id']
             
             for player in players:
-                player_instance = Player.objects.get(player_id=player['id'])  # Get the Team instance
-                gameweek_instance = Gameweek.objects.get(gameweek=gameweek_current)  # Get the Team instance
+                created = False
+                
+                player_instance = Player.objects.get(player_id=player['id'])  
+                gameweek_instance = Gameweek.objects.get(gameweek=gameweek_current) 
 
                 _, created = PlayerDynamicData.objects.update_or_create( 
-                    player=player_instance, # Primary Key
+                    player=player_instance,
                     defaults={
                         "gameweek": gameweek_instance,
                         "event_points" : player['event_points'],
@@ -109,17 +111,9 @@ class Command(BaseCommand):
                     self.stdout.write(self.style.SUCCESS(f"Player {player['web_name']} - {player['id']} created"))  # Print if created
                 else:
                     self.stdout.write(self.style.SUCCESS(f"Player {player['web_name']} - {player['id']} updated")) # Print if updated
+            
+            run_log.info(f"POPULATE_TEAM: Ran successfully at {datetime.datetime.now()}")
 
         except Exception as e:
 
-            error_message = f"An error occurred in the management command: {str(e)}\n"
-            error_message += "Traceback:\n" + traceback.format_exc()
-
-            send_mail(
-            'Failed Management Command',
-            'Your Player Dynamic Data management command (populate_dynamic_model.py) has failed.\n\n',
-            error_message,
-            settings.EMAIL_HOST_USER,
-            [settings.ALERT_EMAIL_RECIPIENT],
-            fail_silently=False,
-        )
+            run_log.info(f"POPULATE_TEAM: Failed at {datetime.datetime.now()}")

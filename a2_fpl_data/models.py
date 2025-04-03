@@ -19,7 +19,6 @@ class Team(models.Model):
     team_id = models.IntegerField(null=True, unique=True)
     team_name = models.CharField(max_length=100)
     short_name = models.CharField(max_length=3)
-    logo_url = models.URLField(null=True)
     strength_overall_home = models.IntegerField(null=True) # Updated weekly
     strength_overall_away = models.IntegerField(null=True) # Updated weekly
     strength_attack_home = models.IntegerField(null=True) # Updated weekly

@@ -1,35 +1,34 @@
 import requests
-from django.core.mail import send_mail
-from django.conf import settings
-import traceback
 from django.core.management.base import BaseCommand
 from a2_fpl_data.models import Player, Team, Region, Position
+import logging
+import datetime
 
 class Command(BaseCommand):
     help = "Fetches player data from the Bootstrap Static API and saves to the database"
 
     def handle(self, *args, **kwargs):
-
+        run_log = logging.getLogger('mc_run')
+        
         try:
         
             URL = "https://fantasy.premierleague.com/api/bootstrap-static"
 
-            players = requests.get(URL).json()['elements'] # send request to URL, put into JSON and filter just the 'teams' part
+            players = requests.get(URL).json()['elements'] 
             
             for player in players:
-                team_instance = Team.objects.get(team_id=player['team'])  # Get the Team instance
-                position_instance = Position.objects.get(position_id=player['element_type'])  # Get the Team instance
+                created = False
+                team_instance = Team.objects.get(team_id=player['team'])  
+                position_instance = Position.objects.get(position_id=player['element_type'])  
                 region_instance = None
                 if player['region'] is not None:
                     try:
                         region_instance = Region.objects.get(region_id=player['region'])
                     except Region.DoesNotExist:
-                        region_instance = None  # Set to None if the region is not found
-
-                #self.stdout.write(player)
+                        region_instance = None 
 
                 _, created = Player.objects.update_or_create( 
-                    player_id=player['id'], # Primary Key
+                    player_id=player['id'], 
                     defaults={
                         'team': team_instance,
                         'first_name': player['first_name'],
@@ -47,17 +46,9 @@ class Command(BaseCommand):
                     self.stdout.write(self.style.SUCCESS(f"Player {player['web_name']} - {player['id']} created"))  # Print if created
                 else:
                     self.stdout.write(self.style.SUCCESS(f"Player {player['web_name']} - {player['id']} updated")) # Print if updated
+            
+            run_log.info(f"POPULATE_PLAYER: Ran successfully at {datetime.datetime.now()}") 
 
         except Exception as e:
 
-            error_message = f"An error occurred in the management command: {str(e)}\n"
-            error_message += "Traceback:\n" + traceback.format_exc()
-
-            send_mail(
-            'Failed Management Command',
-            'Your Player management command (populate_player_model.py) has failed.\n\n',
-            error_message,
-            settings.EMAIL_HOST_USER,
-            [settings.ALERT_EMAIL_RECIPIENT],
-            fail_silently=False,
-        )
+            run_log.info(f"POPULATE_PLAYER: Ran successfully at {datetime.datetime.now()}") 

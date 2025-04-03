@@ -530,6 +530,7 @@ footer {
 
 .fixture-date-background {
     background-color: #37003c;
+    border-radius: 3px;
 }
 
 .fixture-date-text {
@@ -651,7 +652,6 @@ footer {
 .sidebar-crest-first {
     width: 30px;
     height: 30px;
-    padding-bottom: 5px;
 }
 
 .player-first-name-sidebar-first {
@@ -679,6 +679,7 @@ footer {
 }
 
 .stat-button-title-div {
+    padding-top: 5px;
     padding-right: 30px;
     padding-left: 10px;
     padding-bottom: 5px;

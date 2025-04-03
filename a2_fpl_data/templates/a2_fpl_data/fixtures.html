@@ -71,7 +71,8 @@
                                 </div>
                             </div>
                             <span class="fixture-team_h">{{ fixture.team_h.short_name }}</span>
-                            <span class="fixture-team_h-crest"><img class="fixture-crest-h" src="{{ fixture.team_h.logo_url }}"></span>
+                            <span class="fixture-team_h-crest"><img class="fixture-crest-h" src="https://resources.premierleague.com/premierleague/badges/100/t{{ fixture.team_h.code }}.png"></span>
+
                             {% if fixture.team_h_score is None %}
                                 <span class="kickoff_time">{{ fixture.kickoff_time|time:"H:i" }}</span>
                             {% else %}
@@ -80,7 +81,7 @@
                                 <span>{{ fixture.team_a_score }}</span>
                             </div>
                             {% endif %}
-                            <span class="fixture-team_a-crest"><img class="fixture-crest-a" src="{{ fixture.team_a.logo_url }}"></span>
+                            <span class="fixture-team_a-crest"><img class="fixture-crest-a" src="https://resources.premierleague.com/premierleague/badges/100/t{{ fixture.team_a.code }}.png"></span>
                             <span class="fixture-team_a">{{ fixture.team_a.short_name }}</span>
                             <div class="strength-container">
                                 <div class="strength-indicator-div">

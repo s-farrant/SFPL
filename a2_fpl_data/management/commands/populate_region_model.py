@@ -1,24 +1,26 @@
 import requests
-from django.core.mail import send_mail
-from django.conf import settings
-import traceback
 from django.core.management.base import BaseCommand
 from a2_fpl_data.models import Region
+import logging
+import datetime
 
 class Command(BaseCommand):
     help = "Fetches region data from the Region API and saves to the database"
 
     def handle(self, *args, **kwargs):
+        run_log = logging.getLogger('mc_run')
 
         try:
         
             URL = "https://fantasy.premierleague.com/api/regions"
 
-            regions = requests.get(URL).json() # send request to URL, put into JSON and filter just the 'teams' part
+            regions = requests.get(URL).json() 
             
             for region in regions:
+                created = False
+
                 _, created = Region.objects.update_or_create( 
-                    region_id=region['id'], # Primary Key
+                    region_id=region['id'],
                     defaults={
                         'name': region['name'],
                         'code': region['code'],
@@ -32,16 +34,8 @@ class Command(BaseCommand):
                 else:
                     self.stdout.write(self.style.SUCCESS(f"Region {region['name']} updated")) # Print if updated
 
+            run_log.info(f"POPULATE_REGION: Ran successfully at {datetime.datetime.now()}")
+
         except Exception as e:
 
-            error_message = f"An error occurred in the management command: {str(e)}\n"
-            error_message += "Traceback:\n" + traceback.format_exc()
-
-            send_mail(
-            'Failed Management Command',
-            'Your Region management command (populate_region_model.py) has failed.\n\n',
-            error_message,
-            settings.EMAIL_HOST_USER,
-            [settings.ALERT_EMAIL_RECIPIENT],
-            fail_silently=False,
-        )
+            run_log.info(f"POPULATE_REGION: Failed at {datetime.datetime.now()}")

@@ -1,25 +1,26 @@
 import requests
-from django.core.mail import send_mail
-from django.conf import settings
-import traceback
 from django.core.management.base import BaseCommand
 from a2_fpl_data.models import Position
+import logging
+import datetime
 
 class Command(BaseCommand):
     help = "Fetches position data from the Bootstrap Static API and saves to the database"
 
     def handle(self, *args, **kwargs):
-
+        run_log = logging.getLogger('mc_run')
+        
         try:
         
             URL = "https://fantasy.premierleague.com/api/bootstrap-static"
 
-            positions = requests.get(URL).json()['element_types'] # send request to URL, put into JSON and filter just the 'teams' part
+            positions = requests.get(URL).json()['element_types']
             
             for position in positions:
-
+                created = False
+                
                 _, created = Position.objects.update_or_create( 
-                    position_id=position['id'], # Primary Key
+                    position_id=position['id'], 
                     defaults={
                         'name_long': position['singular_name'],
                         'name_short': position['singular_name_short'],
@@ -34,16 +35,8 @@ class Command(BaseCommand):
                 else:
                     self.stdout.write(self.style.SUCCESS(f"Player {position['singular_name']} updated")) # Print if updated
 
+            run_log.info(f"POPULATE_POSITION: Ran successfully at {datetime.datetime.now()}")
+
         except Exception as e:
 
-            error_message = f"An error occurred in the management command: {str(e)}\n"
-            error_message += "Traceback:\n" + traceback.format_exc()
-
-            send_mail(
-            'Failed Management Command',
-            'Your Position management command (populate_position_model.py) has failed.\n\n',
-            error_message,
-            settings.EMAIL_HOST_USER,
-            [settings.ALERT_EMAIL_RECIPIENT],
-            fail_silently=False,
-        )
+            run_log.info(f"POPULATE_POSITION: Failed at {datetime.datetime.now()}") 

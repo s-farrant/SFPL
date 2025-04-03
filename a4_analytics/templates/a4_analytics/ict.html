@@ -49,7 +49,11 @@
                                 <span class="rank-sidebar-first">{{ player.ict_stats.influence_rank }}</span>
                                 <span class="player-first-name-sidebar-first">{{ player.player.first_name }}</span>
                                 <span class="second-name-container scaling-container"><span class="player-second-name-sidebar-first scaling">{{ player.player.second_name }}</span></span>
-                                <img class="sidebar-crest-first" src="{{ player.team.logo_url }}">
+                                {% if player.team.code != 14 %}
+                                    <img class="sidebar-crest-first" src="https://resources.premierleague.com/premierleague/badges/100/t{{ player.team.code }}.png">
+                                {% else %}
+                                    <img class="sidebar-crest-first" src="https://resources.premierleague.com/premierleague/badges/100/t{{ player.team.code }}-hover.png">
+                                {% endif %}
                                 <span class="player-points-sidebar-first">{{ player.ict_stats.influence }}</span>
                             </div>
                             <div class="first-player-image">
@@ -59,7 +63,7 @@
                         {% else %}
                             <div class="bar-list-rank">
                                 <span class="rank-sidebar">{{ player.ict_stats.influence_rank }}</span>
-                                <img class="sidebar-crest" src="{{ player.team.logo_url }}">
+                                <img class="sidebar-crest" src="https://resources.premierleague.com/premierleague/badges/100/t{{ player.team.code }}.png">
                                 <span class="player-name-sidebar">{{ player.player.web_name }} - {{ player.player.position.name_short }}</span>
                                 <span class="player-points-sidebar">{{ player.ict_stats.influence }}</span>
                             </div>
@@ -79,8 +83,11 @@
                                 <span class="rank-sidebar-first">{{ player.ict_stats.influence_rank_type }}</span>
                                 <span class="player-first-name-sidebar-first">{{ player.player.first_name }}</span>
                                 <span class="second-name-container scaling-container"><span class="player-second-name-sidebar-first scaling">{{ player.player.second_name }}</span></span>
-                                <img class="sidebar-crest-first" src="{{ player.team.logo_url }}">
-                                <span class="player-points-sidebar-first">{{ player.ict_stats.influence }}</span>
+                                {% if player.team.code != 14 %}
+                                    <img class="sidebar-crest-first" src="https://resources.premierleague.com/premierleague/badges/100/t{{ player.team.code }}.png">
+                                {% else %}
+                                    <img class="sidebar-crest-first" src="https://resources.premierleague.com/premierleague/badges/100/t{{ player.team.code }}-hover.png">
+                                {% endif %}                                <span class="player-points-sidebar-first">{{ player.ict_stats.influence }}</span>
                             </div>
                             <div class="first-player-image">
                                 <img src="https://resources.premierleague.com/premierleague/photos/players/110x140/p{{ player.player.photo|slice:":-4" }}.png">
@@ -89,7 +96,7 @@
                         {% else %}
                             <div class="bar-list-rank">
                                 <span class="rank-sidebar">{{ player.ict_stats.influence_rank_type }}</span>
-                                <img class="sidebar-crest" src="{{ player.team.logo_url }}">
+                                <img class="sidebar-crest" src="https://resources.premierleague.com/premierleague/badges/100/t{{ player.team.code }}.png">
                                 <span class="player-name-sidebar">{{ player.player.web_name }}</span>
                                 <span class="player-points-sidebar">{{ player.ict_stats.influence }}</span>
                             </div>
@@ -109,8 +116,11 @@
                                 <span class="rank-sidebar-first">{{ player.ict_stats.influence_rank_type }}</span>
                                 <span class="player-first-name-sidebar-first">{{ player.player.first_name }}</span>
                                 <span class="second-name-container scaling-container"><span class="player-second-name-sidebar-first scaling">{{ player.player.second_name }}</span></span>
-                                <img class="sidebar-crest-first" src="{{ player.team.logo_url }}">
-                                <span class="player-points-sidebar-first">{{ player.ict_stats.influence }}</span>
+                                {% if player.team.code != 14 %}
+                                    <img class="sidebar-crest-first" src="https://resources.premierleague.com/premierleague/badges/100/t{{ player.team.code }}.png">
+                                {% else %}
+                                    <img class="sidebar-crest-first" src="https://resources.premierleague.com/premierleague/badges/100/t{{ player.team.code }}-hover.png">
+                                {% endif %}                                <span class="player-points-sidebar-first">{{ player.ict_stats.influence }}</span>
                             </div>
                             <div class="first-player-image">
                                 <img src="https://resources.premierleague.com/premierleague/photos/players/110x140/p{{ player.player.photo|slice:":-4" }}.png">
@@ -119,7 +129,7 @@
                         {% else %}
                             <div class="bar-list-rank">
                                 <span class="rank-sidebar">{{ player.ict_stats.influence_rank_type }}</span>
-                                <img class="sidebar-crest" src="{{ player.team.logo_url }}">
+                                <img class="sidebar-crest" src="https://resources.premierleague.com/premierleague/badges/100/t{{ player.team.code }}.png">
                                 <span class="player-name-sidebar">{{ player.player.web_name }}</span>
                                 <span class="player-points-sidebar">{{ player.ict_stats.influence }}</span>
                             </div>
@@ -139,8 +149,11 @@
                                 <span class="rank-sidebar-first">{{ player.ict_stats.influence_rank_type }}</span>
                                 <span class="player-first-name-sidebar-first">{{ player.player.first_name }}</span>
                                 <span class="second-name-container scaling-container"><span class="player-second-name-sidebar-first scaling">{{ player.player.second_name }}</span></span>
-                                <img class="sidebar-crest-first" src="{{ player.team.logo_url }}">
-                                <span class="player-points-sidebar-first">{{ player.ict_stats.influence }}</span>
+                                {% if player.team.code != 14 %}
+                                    <img class="sidebar-crest-first" src="https://resources.premierleague.com/premierleague/badges/100/t{{ player.team.code }}.png">
+                                {% else %}
+                                    <img class="sidebar-crest-first" src="https://resources.premierleague.com/premierleague/badges/100/t{{ player.team.code }}-hover.png">
+                                {% endif %}                                <span class="player-points-sidebar-first">{{ player.ict_stats.influence }}</span>
                             </div>
                             <div class="first-player-image">
                                 <img src="https://resources.premierleague.com/premierleague/photos/players/110x140/p{{ player.player.photo|slice:":-4" }}.png">
@@ -149,7 +162,7 @@
                         {% else %}
                             <div class="bar-list-rank">
                                 <span class="rank-sidebar">{{ player.ict_stats.influence_rank_type }}</span>
-                                <img class="sidebar-crest" src="{{ player.team.logo_url }}">
+                                <img class="sidebar-crest" src="https://resources.premierleague.com/premierleague/badges/100/t{{ player.team.code }}.png">
                                 <span class="player-name-sidebar">{{ player.player.web_name }}</span>
                                 <span class="player-points-sidebar">{{ player.ict_stats.influence }}</span>
                             </div>
@@ -169,8 +182,11 @@
                                 <span class="rank-sidebar-first">{{ player.ict_stats.influence_rank_type }}</span>
                                 <span class="player-first-name-sidebar-first">{{ player.player.first_name }}</span>
                                 <span class="second-name-container scaling-container"><span class="player-second-name-sidebar-first scaling">{{ player.player.second_name }}</span></span>
-                                <img class="sidebar-crest-first" src="{{ player.team.logo_url }}">
-                                <span class="player-points-sidebar-first">{{ player.ict_stats.influence }}</span>
+                                {% if player.team.code != 14 %}
+                                    <img class="sidebar-crest-first" src="https://resources.premierleague.com/premierleague/badges/100/t{{ player.team.code }}.png">
+                                {% else %}
+                                    <img class="sidebar-crest-first" src="https://resources.premierleague.com/premierleague/badges/100/t{{ player.team.code }}-hover.png">
+                                {% endif %}                                <span class="player-points-sidebar-first">{{ player.ict_stats.influence }}</span>
                             </div>
                             <div class="first-player-image">
                                 <img src="https://resources.premierleague.com/premierleague/photos/players/110x140/p{{ player.player.photo|slice:":-4" }}.png">
@@ -179,7 +195,7 @@
                         {% else %}
                             <div class="bar-list-rank">
                                 <span class="rank-sidebar">{{ player.ict_stats.influence_rank_type }}</span>
-                                <img class="sidebar-crest" src="{{ player.team.logo_url }}">
+                                <img class="sidebar-crest" src="https://resources.premierleague.com/premierleague/badges/100/t{{ player.team.code }}.png">
                                 <span class="player-name-sidebar">{{ player.player.web_name }}</span>
                                 <span class="player-points-sidebar">{{ player.ict_stats.influence }}</span>
                             </div>
@@ -213,8 +229,11 @@
                                 <span class="rank-sidebar-first">{{ player.ict_stats.creativity_rank }}</span>
                                 <span class="player-first-name-sidebar-first">{{ player.player.first_name }}</span>
                                 <span class="second-name-container scaling-container"><span class="player-second-name-sidebar-first scaling">{{ player.player.second_name }}</span></span>
-                                <img class="sidebar-crest-first" src="{{ player.team.logo_url }}">
-                                <span class="player-points-sidebar-first">{{ player.ict_stats.creativity }}</span>
+                                {% if player.team.code != 14 %}
+                                    <img class="sidebar-crest-first" src="https://resources.premierleague.com/premierleague/badges/100/t{{ player.team.code }}.png">
+                                {% else %}
+                                    <img class="sidebar-crest-first" src="https://resources.premierleague.com/premierleague/badges/100/t{{ player.team.code }}-hover.png">
+                                {% endif %}                                <span class="player-points-sidebar-first">{{ player.ict_stats.creativity }}</span>
                             </div>
                             <div class="first-player-image">
                                 <img src="https://resources.premierleague.com/premierleague/photos/players/110x140/p{{ player.player.photo|slice:":-4" }}.png">
@@ -223,7 +242,7 @@
                         {% else %}
                             <div class="bar-list-rank">
                                 <span class="rank-sidebar">{{ player.ict_stats.creativity_rank }}</span>
-                                <img class="sidebar-crest" src="{{ player.team.logo_url }}">
+                                <img class="sidebar-crest" src="https://resources.premierleague.com/premierleague/badges/100/t{{ player.team.code }}.png">
                                 <span class="player-name-sidebar">{{ player.player.web_name }} - {{ player.player.position.name_short }}</span>
                                 <span class="player-points-sidebar">{{ player.ict_stats.creativity }}</span>
                             </div>
@@ -243,8 +262,11 @@
                                 <span class="rank-sidebar-first">{{ player.ict_stats.creativity_rank_type }}</span>
                                 <span class="player-first-name-sidebar-first">{{ player.player.first_name }}</span>
                                 <span class="second-name-container scaling-container"><span class="player-second-name-sidebar-first scaling">{{ player.player.second_name }}</span></span>
-                                <img class="sidebar-crest-first" src="{{ player.team.logo_url }}">
-                                <span class="player-points-sidebar-first">{{ player.ict_stats.creativity }}</span>
+                                {% if player.team.code != 14 %}
+                                    <img class="sidebar-crest-first" src="https://resources.premierleague.com/premierleague/badges/100/t{{ player.team.code }}.png">
+                                {% else %}
+                                    <img class="sidebar-crest-first" src="https://resources.premierleague.com/premierleague/badges/100/t{{ player.team.code }}-hover.png">
+                                {% endif %}                                <span class="player-points-sidebar-first">{{ player.ict_stats.creativity }}</span>
                             </div>
                             <div class="first-player-image">
                                 <img src="https://resources.premierleague.com/premierleague/photos/players/110x140/p{{ player.player.photo|slice:":-4" }}.png">
@@ -253,7 +275,7 @@
                         {% else %}
                             <div class="bar-list-rank">
                                 <span class="rank-sidebar">{{ player.ict_stats.creativity_rank_type }}</span>
-                                <img class="sidebar-crest" src="{{ player.team.logo_url }}">
+                                <img class="sidebar-crest" src="https://resources.premierleague.com/premierleague/badges/100/t{{ player.team.code }}.png">
                                 <span class="player-name-sidebar">{{ player.player.web_name }}</span>
                                 <span class="player-points-sidebar">{{ player.ict_stats.creativity }}</span>
                             </div>
@@ -273,8 +295,11 @@
                                 <span class="rank-sidebar-first">{{ player.ict_stats.creativity_rank_type }}</span>
                                 <span class="player-first-name-sidebar-first">{{ player.player.first_name }}</span>
                                 <span class="second-name-container scaling-container"><span class="player-second-name-sidebar-first scaling">{{ player.player.second_name }}</span></span>
-                                <img class="sidebar-crest-first" src="{{ player.team.logo_url }}">
-                                <span class="player-points-sidebar-first">{{ player.ict_stats.creativity }}</span>
+                                {% if player.team.code != 14 %}
+                                    <img class="sidebar-crest-first" src="https://resources.premierleague.com/premierleague/badges/100/t{{ player.team.code }}.png">
+                                {% else %}
+                                    <img class="sidebar-crest-first" src="https://resources.premierleague.com/premierleague/badges/100/t{{ player.team.code }}-hover.png">
+                                {% endif %}                                <span class="player-points-sidebar-first">{{ player.ict_stats.creativity }}</span>
                             </div>
                             <div class="first-player-image">
                                 <img src="https://resources.premierleague.com/premierleague/photos/players/110x140/p{{ player.player.photo|slice:":-4" }}.png">
@@ -283,7 +308,7 @@
                         {% else %}
                             <div class="bar-list-rank">
                                 <span class="rank-sidebar">{{ player.ict_stats.creativity_rank_type }}</span>
-                                <img class="sidebar-crest" src="{{ player.team.logo_url }}">
+                                <img class="sidebar-crest" src="https://resources.premierleague.com/premierleague/badges/100/t{{ player.team.code }}.png">
                                 <span class="player-name-sidebar">{{ player.player.web_name }}</span>
                                 <span class="player-points-sidebar">{{ player.ict_stats.creativity }}</span>
                             </div>
@@ -303,8 +328,11 @@
                                 <span class="rank-sidebar-first">{{ player.ict_stats.creativity_rank_type }}</span>
                                 <span class="player-first-name-sidebar-first">{{ player.player.first_name }}</span>
                                 <span class="second-name-container scaling-container"><span class="player-second-name-sidebar-first scaling">{{ player.player.second_name }}</span></span>
-                                <img class="sidebar-crest-first" src="{{ player.team.logo_url }}">
-                                <span class="player-points-sidebar-first">{{ player.ict_stats.creativity }}</span>
+                                {% if player.team.code != 14 %}
+                                    <img class="sidebar-crest-first" src="https://resources.premierleague.com/premierleague/badges/100/t{{ player.team.code }}.png">
+                                {% else %}
+                                    <img class="sidebar-crest-first" src="https://resources.premierleague.com/premierleague/badges/100/t{{ player.team.code }}-hover.png">
+                                {% endif %}                                <span class="player-points-sidebar-first">{{ player.ict_stats.creativity }}</span>
                             </div>
                             <div class="first-player-image">
                                 <img src="https://resources.premierleague.com/premierleague/photos/players/110x140/p{{ player.player.photo|slice:":-4" }}.png">
@@ -313,7 +341,7 @@
                         {% else %}
                             <div class="bar-list-rank">
                                 <span class="rank-sidebar">{{ player.ict_stats.creativity_rank_type }}</span>
-                                <img class="sidebar-crest" src="{{ player.team.logo_url }}">
+                                <img class="sidebar-crest" src="https://resources.premierleague.com/premierleague/badges/100/t{{ player.team.code }}.png">
                                 <span class="player-name-sidebar">{{ player.player.web_name }}</span>
                                 <span class="player-points-sidebar">{{ player.ict_stats.creativity }}</span>
                             </div>
@@ -333,8 +361,11 @@
                                 <span class="rank-sidebar-first">{{ player.ict_stats.creativity_rank_type }}</span>
                                 <span class="player-first-name-sidebar-first">{{ player.player.first_name }}</span>
                                 <span class="second-name-container scaling-container"><span class="player-second-name-sidebar-first scaling">{{ player.player.second_name }}</span></span>
-                                <img class="sidebar-crest-first" src="{{ player.team.logo_url }}">
-                                <span class="player-points-sidebar-first">{{ player.ict_stats.creativity }}</span>
+                                {% if player.team.code != 14 %}
+                                    <img class="sidebar-crest-first" src="https://resources.premierleague.com/premierleague/badges/100/t{{ player.team.code }}.png">
+                                {% else %}
+                                    <img class="sidebar-crest-first" src="https://resources.premierleague.com/premierleague/badges/100/t{{ player.team.code }}-hover.png">
+                                {% endif %}                                <span class="player-points-sidebar-first">{{ player.ict_stats.creativity }}</span>
                             </div>
                             <div class="first-player-image">
                                 <img src="https://resources.premierleague.com/premierleague/photos/players/110x140/p{{ player.player.photo|slice:":-4" }}.png">
@@ -343,7 +374,7 @@
                         {% else %}
                             <div class="bar-list-rank">
                                 <span class="rank-sidebar">{{ player.ict_stats.creativity_rank_type }}</span>
-                                <img class="sidebar-crest" src="{{ player.team.logo_url }}">
+                                <img class="sidebar-crest" src="https://resources.premierleague.com/premierleague/badges/100/t{{ player.team.code }}.png">
                                 <span class="player-name-sidebar">{{ player.player.web_name }}</span>
                                 <span class="player-points-sidebar">{{ player.ict_stats.creativity }}</span>
                             </div>
@@ -377,8 +408,11 @@
                                 <span class="rank-sidebar-first">{{ player.ict_stats.threat_rank }}</span>
                                 <span class="player-first-name-sidebar-first">{{ player.player.first_name }}</span>
                                 <span class="second-name-container"><span class="player-second-name-sidebar-first">{{ player.player.second_name }}</span></span>
-                                <img class="sidebar-crest-first" src="{{ player.team.logo_url }}">
-                                <span class="player-points-sidebar-first">{{ player.ict_stats.threat }}</span>
+                                {% if player.team.code != 14 %}
+                                    <img class="sidebar-crest-first" src="https://resources.premierleague.com/premierleague/badges/100/t{{ player.team.code }}.png">
+                                {% else %}
+                                    <img class="sidebar-crest-first" src="https://resources.premierleague.com/premierleague/badges/100/t{{ player.team.code }}-hover.png">
+                                {% endif %}                                <span class="player-points-sidebar-first">{{ player.ict_stats.threat }}</span>
                             </div>
                             <div class="first-player-image">
                                 <img src="https://resources.premierleague.com/premierleague/photos/players/110x140/p{{ player.player.photo|slice:":-4" }}.png">
@@ -387,7 +421,7 @@
                         {% else %}
                             <div class="bar-list-rank">
                                 <span class="rank-sidebar">{{ player.ict_stats.threat_rank }}</span>
-                                <img class="sidebar-crest" src="{{ player.team.logo_url }}">
+                                <img class="sidebar-crest" src="https://resources.premierleague.com/premierleague/badges/100/t{{ player.team.code }}.png">
                                 <span class="player-name-sidebar">{{ player.player.web_name }} - {{ player.player.position.name_short }}</span>
                                 <span class="player-points-sidebar">{{ player.ict_stats.threat }}</span>
                             </div>
@@ -407,8 +441,11 @@
                                 <span class="rank-sidebar-first">{{ player.ict_stats.threat_rank_type }}</span>
                                 <span class="player-first-name-sidebar-first">{{ player.player.first_name }}</span>
                                 <span class="second-name-container"><span class="player-second-name-sidebar-first">{{ player.player.second_name }}</span></span>
-                                <img class="sidebar-crest-first" src="{{ player.team.logo_url }}">
-                                <span class="player-points-sidebar-first">{{ player.ict_stats.threat }}</span>
+                                {% if player.team.code != 14 %}
+                                    <img class="sidebar-crest-first" src="https://resources.premierleague.com/premierleague/badges/100/t{{ player.team.code }}.png">
+                                {% else %}
+                                    <img class="sidebar-crest-first" src="https://resources.premierleague.com/premierleague/badges/100/t{{ player.team.code }}-hover.png">
+                                {% endif %}                                <span class="player-points-sidebar-first">{{ player.ict_stats.threat }}</span>
                             </div>
                             <div class="first-player-image">
                                 <img src="https://resources.premierleague.com/premierleague/photos/players/110x140/p{{ player.player.photo|slice:":-4" }}.png">
@@ -417,7 +454,7 @@
                         {% else %}
                             <div class="bar-list-rank">
                                 <span class="rank-sidebar">{{ player.ict_stats.threat_rank_type }}</span>
-                                <img class="sidebar-crest" src="{{ player.team.logo_url }}">
+                                <img class="sidebar-crest" src="https://resources.premierleague.com/premierleague/badges/100/t{{ player.team.code }}.png">
                                 <span class="player-name-sidebar">{{ player.player.web_name }}</span>
                                 <span class="player-points-sidebar">{{ player.ict_stats.threat }}</span>
                             </div>
@@ -437,8 +474,11 @@
                                 <span class="rank-sidebar-first">{{ player.ict_stats.threat_rank_type }}</span>
                                 <span class="player-first-name-sidebar-first">{{ player.player.first_name }}</span>
                                 <span class="second-name-container"><span class="player-second-name-sidebar-first">{{ player.player.second_name }}</span></span>
-                                <img class="sidebar-crest-first" src="{{ player.team.logo_url }}">
-                                <span class="player-points-sidebar-first">{{ player.ict_stats.threat }}</span>
+                                {% if player.team.code != 14 %}
+                                    <img class="sidebar-crest-first" src="https://resources.premierleague.com/premierleague/badges/100/t{{ player.team.code }}.png">
+                                {% else %}
+                                    <img class="sidebar-crest-first" src="https://resources.premierleague.com/premierleague/badges/100/t{{ player.team.code }}-hover.png">
+                                {% endif %}                                <span class="player-points-sidebar-first">{{ player.ict_stats.threat }}</span>
                             </div>
                             <div class="first-player-image">
                                 <img src="https://resources.premierleague.com/premierleague/photos/players/110x140/p{{ player.player.photo|slice:":-4" }}.png">
@@ -447,7 +487,7 @@
                         {% else %}
                             <div class="bar-list-rank">
                                 <span class="rank-sidebar">{{ player.ict_stats.threat_rank_type }}</span>
-                                <img class="sidebar-crest" src="{{ player.team.logo_url }}">
+                                <img class="sidebar-crest" src="https://resources.premierleague.com/premierleague/badges/100/t{{ player.team.code }}.png">
                                 <span class="player-name-sidebar">{{ player.player.web_name }}</span>
                                 <span class="player-points-sidebar">{{ player.ict_stats.threat }}</span>
                             </div>
@@ -467,8 +507,11 @@
                                 <span class="rank-sidebar-first">{{ player.ict_stats.threat_rank_type }}</span>
                                 <span class="player-first-name-sidebar-first">{{ player.player.first_name }}</span>
                                 <span class="second-name-container"><span class="player-second-name-sidebar-first">{{ player.player.second_name }}</span></span>
-                                <img class="sidebar-crest-first" src="{{ player.team.logo_url }}">
-                                <span class="player-points-sidebar-first">{{ player.ict_stats.threat }}</span>
+                                {% if player.team.code != 14 %}
+                                    <img class="sidebar-crest-first" src="https://resources.premierleague.com/premierleague/badges/100/t{{ player.team.code }}.png">
+                                {% else %}
+                                    <img class="sidebar-crest-first" src="https://resources.premierleague.com/premierleague/badges/100/t{{ player.team.code }}-hover.png">
+                                {% endif %}                                <span class="player-points-sidebar-first">{{ player.ict_stats.threat }}</span>
                             </div>
                             <div class="first-player-image">
                                 <img src="https://resources.premierleague.com/premierleague/photos/players/110x140/p{{ player.player.photo|slice:":-4" }}.png">
@@ -477,7 +520,7 @@
                         {% else %}
                             <div class="bar-list-rank">
                                 <span class="rank-sidebar">{{ player.ict_stats.threat_rank_type }}</span>
-                                <img class="sidebar-crest" src="{{ player.team.logo_url }}">
+                                <img class="sidebar-crest" src="https://resources.premierleague.com/premierleague/badges/100/t{{ player.team.code }}.png">
                                 <span class="player-name-sidebar">{{ player.player.web_name }}</span>
                                 <span class="player-points-sidebar">{{ player.ict_stats.threat }}</span>
                             </div>
@@ -497,8 +540,11 @@
                                 <span class="rank-sidebar-first">{{ player.ict_stats.threat_rank_type }}</span>
                                 <span class="player-first-name-sidebar-first">{{ player.player.first_name }}</span>
                                 <span class="second-name-container"><span class="player-second-name-sidebar-first">{{ player.player.second_name }}</span></span>
-                                <img class="sidebar-crest-first" src="{{ player.team.logo_url }}">
-                                <span class="player-points-sidebar-first">{{ player.ict_stats.threat }}</span>
+                                {% if player.team.code != 14 %}
+                                    <img class="sidebar-crest-first" src="https://resources.premierleague.com/premierleague/badges/100/t{{ player.team.code }}.png">
+                                {% else %}
+                                    <img class="sidebar-crest-first" src="https://resources.premierleague.com/premierleague/badges/100/t{{ player.team.code }}-hover.png">
+                                {% endif %}                                <span class="player-points-sidebar-first">{{ player.ict_stats.threat }}</span>
                             </div>
                             <div class="first-player-image">
                                 <img src="https://resources.premierleague.com/premierleague/photos/players/110x140/p{{ player.player.photo|slice:":-4" }}.png">
@@ -507,7 +553,7 @@
                         {% else %}
                             <div class="bar-list-rank">
                                 <span class="rank-sidebar">{{ player.ict_stats.threat_rank_type }}</span>
-                                <img class="sidebar-crest" src="{{ player.team.logo_url }}">
+                                <img class="sidebar-crest" src="https://resources.premierleague.com/premierleague/badges/100/t{{ player.team.code }}.png">
                                 <span class="player-name-sidebar">{{ player.player.web_name }}</span>
                                 <span class="player-points-sidebar">{{ player.ict_stats.threat }}</span>
                             </div>
@@ -541,8 +587,11 @@
                                 <span class="rank-sidebar-first">{{ player.ict_stats.ict_index_rank }}</span>
                                 <span class="player-first-name-sidebar-first">{{ player.player.first_name }}</span>
                                 <span class="second-name-container scaling-container"><span class="player-second-name-sidebar-first scaling">{{ player.player.second_name }}</span></span>
-                                <img class="sidebar-crest-first" src="{{ player.team.logo_url }}">
-                                <span class="player-points-sidebar-first">{{ player.ict_stats.ict_index }}</span>
+                                {% if player.team.code != 14 %}
+                                    <img class="sidebar-crest-first" src="https://resources.premierleague.com/premierleague/badges/100/t{{ player.team.code }}.png">
+                                {% else %}
+                                    <img class="sidebar-crest-first" src="https://resources.premierleague.com/premierleague/badges/100/t{{ player.team.code }}-hover.png">
+                                {% endif %}                                <span class="player-points-sidebar-first">{{ player.ict_stats.ict_index }}</span>
                             </div>
                             <div class="first-player-image">
                                 <img src="https://resources.premierleague.com/premierleague/photos/players/110x140/p{{ player.player.photo|slice:":-4" }}.png">
@@ -551,7 +600,7 @@
                         {% else %}
                             <div class="bar-list-rank">
                                 <span class="rank-sidebar">{{ player.ict_stats.ict_index_rank }}</span>
-                                <img class="sidebar-crest" src="{{ player.team.logo_url }}">
+                                <img class="sidebar-crest" src="https://resources.premierleague.com/premierleague/badges/100/t{{ player.team.code }}.png">
                                 <span class="player-name-sidebar">{{ player.player.web_name }} - {{ player.player.position.name_short }}</span>
                                 <span class="player-points-sidebar">{{ player.ict_stats.ict_index }}</span>
                             </div>
@@ -571,8 +620,11 @@
                                 <span class="rank-sidebar-first">{{ player.ict_stats.ict_index_rank_type }}</span>
                                 <span class="player-first-name-sidebar-first">{{ player.player.first_name }}</span>
                                 <span class="second-name-container scaling-container"><span class="player-second-name-sidebar-first scaling">{{ player.player.second_name }}</span></span>
-                                <img class="sidebar-crest-first" src="{{ player.team.logo_url }}">
-                                <span class="player-points-sidebar-first">{{ player.ict_stats.ict_index }}</span>
+                                {% if player.team.code != 14 %}
+                                    <img class="sidebar-crest-first" src="https://resources.premierleague.com/premierleague/badges/100/t{{ player.team.code }}.png">
+                                {% else %}
+                                    <img class="sidebar-crest-first" src="https://resources.premierleague.com/premierleague/badges/100/t{{ player.team.code }}-hover.png">
+                                {% endif %}                                <span class="player-points-sidebar-first">{{ player.ict_stats.ict_index }}</span>
                             </div>
                             <div class="first-player-image">
                                 <img src="https://resources.premierleague.com/premierleague/photos/players/110x140/p{{ player.player.photo|slice:":-4" }}.png">
@@ -581,7 +633,7 @@
                         {% else %}
                             <div class="bar-list-rank">
                                 <span class="rank-sidebar">{{ player.ict_stats.ict_index_rank_type }}</span>
-                                <img class="sidebar-crest" src="{{ player.team.logo_url }}">
+                                <img class="sidebar-crest" src="https://resources.premierleague.com/premierleague/badges/100/t{{ player.team.code }}.png">
                                 <span class="player-name-sidebar">{{ player.player.web_name }}</span>
                                 <span class="player-points-sidebar">{{ player.ict_stats.ict_index }}</span>
                             </div>
@@ -600,8 +652,11 @@
                                 <span class="rank-sidebar-first">{{ player.ict_stats.ict_index_rank_type }}</span>
                                 <span class="player-first-name-sidebar-first">{{ player.player.first_name }}</span>
                                 <span class="second-name-container scaling-container"><span class="player-second-name-sidebar-first scaling">{{ player.player.second_name }}</span></span>
-                                <img class="sidebar-crest-first" src="{{ player.team.logo_url }}">
-                                <span class="player-points-sidebar-first">{{ player.ict_stats.ict_index }}</span>
+                                {% if player.team.code != 14 %}
+                                    <img class="sidebar-crest-first" src="https://resources.premierleague.com/premierleague/badges/100/t{{ player.team.code }}.png">
+                                {% else %}
+                                    <img class="sidebar-crest-first" src="https://resources.premierleague.com/premierleague/badges/100/t{{ player.team.code }}-hover.png">
+                                {% endif %}                                <span class="player-points-sidebar-first">{{ player.ict_stats.ict_index }}</span>
                             </div>
                             <div class="first-player-image">
                                 <img src="https://resources.premierleague.com/premierleague/photos/players/110x140/p{{ player.player.photo|slice:":-4" }}.png">
@@ -610,7 +665,7 @@
                         {% else %}
                             <div class="bar-list-rank">
                                 <span class="rank-sidebar">{{ player.ict_stats.ict_index_rank_type }}</span>
-                                <img class="sidebar-crest" src="{{ player.team.logo_url }}">
+                                <img class="sidebar-crest" src="https://resources.premierleague.com/premierleague/badges/100/t{{ player.team.code }}.png">
                                 <span class="player-name-sidebar">{{ player.player.web_name }}</span>
                                 <span class="player-points-sidebar">{{ player.ict_stats.ict_index }}</span>
                             </div>
@@ -630,8 +685,11 @@
                                 <span class="rank-sidebar-first">{{ player.ict_stats.ict_index_rank_type }}</span>
                                 <span class="player-first-name-sidebar-first">{{ player.player.first_name }}</span>
                                 <span class="second-name-container scaling-container"><span class="player-second-name-sidebar-first scaling">{{ player.player.second_name }}</span></span>
-                                <img class="sidebar-crest-first" src="{{ player.team.logo_url }}">
-                                <span class="player-points-sidebar-first">{{ player.ict_stats.ict_index }}</span>
+                                {% if player.team.code != 14 %}
+                                    <img class="sidebar-crest-first" src="https://resources.premierleague.com/premierleague/badges/100/t{{ player.team.code }}.png">
+                                {% else %}
+                                    <img class="sidebar-crest-first" src="https://resources.premierleague.com/premierleague/badges/100/t{{ player.team.code }}-hover.png">
+                                {% endif %}                                <span class="player-points-sidebar-first">{{ player.ict_stats.ict_index }}</span>
                             </div>
                             <div class="first-player-image">
                                 <img src="https://resources.premierleague.com/premierleague/photos/players/110x140/p{{ player.player.photo|slice:":-4" }}.png">
@@ -640,7 +698,7 @@
                         {% else %}
                             <div class="bar-list-rank">
                                 <span class="rank-sidebar">{{ player.ict_stats.ict_index_rank_type }}</span>
-                                <img class="sidebar-crest" src="{{ player.team.logo_url }}">
+                                <img class="sidebar-crest" src="https://resources.premierleague.com/premierleague/badges/100/t{{ player.team.code }}.png">
                                 <span class="player-name-sidebar">{{ player.player.web_name }}</span>
                                 <span class="player-points-sidebar">{{ player.ict_stats.ict_index }}</span>
                             </div>
@@ -660,8 +718,11 @@
                                 <span class="rank-sidebar-first">{{ player.ict_stats.ict_index_rank_type }}</span>
                                 <span class="player-first-name-sidebar-first">{{ player.player.first_name }}</span>
                                 <span class="second-name-container scaling-container"><span class="player-second-name-sidebar-first scaling">{{ player.player.second_name }}</span></span>
-                                <img class="sidebar-crest-first" src="{{ player.team.logo_url }}">
-                                <span class="player-points-sidebar-first">{{ player.ict_stats.ict_index }}</span>
+                                {% if player.team.code != 14 %}
+                                    <img class="sidebar-crest-first" src="https://resources.premierleague.com/premierleague/badges/100/t{{ player.team.code }}.png">
+                                {% else %}
+                                    <img class="sidebar-crest-first" src="https://resources.premierleague.com/premierleague/badges/100/t{{ player.team.code }}-hover.png">
+                                {% endif %}                                <span class="player-points-sidebar-first">{{ player.ict_stats.ict_index }}</span>
                             </div>
                             <div class="first-player-image">
                                 <img src="https://resources.premierleague.com/premierleague/photos/players/110x140/p{{ player.player.photo|slice:":-4" }}.png">
@@ -670,7 +731,7 @@
                         {% else %}
                             <div class="bar-list-rank">
                                 <span class="rank-sidebar">{{ player.ict_stats.ict_index_rank_type }}</span>
-                                <img class="sidebar-crest" src="{{ player.team.logo_url }}">
+                                <img class="sidebar-crest" src="https://resources.premierleague.com/premierleague/badges/100/t{{ player.team.code }}.png">
                                 <span class="player-name-sidebar">{{ player.player.web_name }}</span>
                                 <span class="player-points-sidebar">{{ player.ict_stats.ict_index }}</span>
                             </div>
