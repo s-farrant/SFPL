@@ -38,9 +38,9 @@ class Command(BaseCommand):
                         "ep_next" : float(player['ep_next']),
                         "points_per_game" : player['points_per_game'],
 
-                        "now_cost" : player['now_cost'],
-                        "cost_change_event" : player['cost_change_event'],
-                        "cost_change_start" : player['cost_change_start'],
+                        "now_cost" : (player['now_cost'])/10,
+                        "cost_change_event" : (player['cost_change_event'])/10,
+                        "cost_change_start" : (player['cost_change_start'])/10,
                         "form" : player['form'],
                         "value_form" : player['value_form'],
                         "value_season" : player['value_season'],

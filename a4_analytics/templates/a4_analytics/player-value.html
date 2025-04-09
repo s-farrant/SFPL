@@ -1,0 +1,109 @@
+{% extends "a1_core/base.html"%}
+{% load static %}
+
+{% block content %}
+
+<div class="page-div">
+
+    <div class="left-sidebar">
+        <h3 class="bar-header">Stats</h3>
+        <div class="sidebar-content">
+                <li class="bar-list">
+                            <a href="{% url 'ict' %}">ICT Stats</a>
+                </li>
+                <li class="bar-list">
+                    <a href="{% url 'in-game' %}">In-game Stats</a>
+                </li>
+                <li class="bar-list">
+                    <a href="{% url 'transfers' %}">Transfers</a>
+                </li>
+                <li class="bar-list">
+                    <a href="{% url 'player-value' %}">Player Value</a>
+                </li>
+        </div>
+    </div>
+
+
+    <div class="pitch-div-div stats-div">
+
+        <!-- Total Points -->
+
+        <div class="stat-column-div">
+            {% include "a4_analytics/_stat_column_head.html" with title="Total Points" tile_number=1 %}
+
+            {% include "a4_analytics/_stat_column.html" with player_list=stat_lists.total_points.all tile_number=1 tile_suffix="all" stat="stats.total_points" %}
+            {% include "a4_analytics/_stat_column.html" with player_list=stat_lists.total_points.gkp tile_number=1 tile_suffix="gkp" stat="stats.total_points" %}
+            {% include "a4_analytics/_stat_column.html" with player_list=stat_lists.total_points.def tile_number=1 tile_suffix="def" stat="stats.total_points" %}
+            {% include "a4_analytics/_stat_column.html" with player_list=stat_lists.total_points.mid tile_number=1 tile_suffix="mid" stat="stats.total_points" %}
+            {% include "a4_analytics/_stat_column.html" with player_list=stat_lists.total_points.fwd tile_number=1 tile_suffix="fwd" stat="stats.total_points" %}
+        </div>
+         
+        <!-- Points per Game-->
+
+        <div class="stat-column-div">
+            {% include "a4_analytics/_stat_column_head.html" with title="Points per Game" tile_number=2 %}
+
+            {% include "a4_analytics/_stat_column.html" with player_list=stat_lists.points_per_game.all tile_number=2 tile_suffix="all" stat="stats.points_per_game" %}
+            {% include "a4_analytics/_stat_column.html" with player_list=stat_lists.points_per_game.gkp tile_number=2 tile_suffix="gkp" stat="stats.points_per_game" %}
+            {% include "a4_analytics/_stat_column.html" with player_list=stat_lists.points_per_game.def tile_number=2 tile_suffix="def" stat="stats.points_per_game" %}
+            {% include "a4_analytics/_stat_column.html" with player_list=stat_lists.points_per_game.mid tile_number=2 tile_suffix="mid" stat="stats.points_per_game" %}
+            {% include "a4_analytics/_stat_column.html" with player_list=stat_lists.points_per_game.fwd tile_number=2 tile_suffix="fwd" stat="stats.points_per_game" %}
+        </div>
+
+        <!-- Cost -->
+
+        <div class="stat-column-div">
+            {% include "a4_analytics/_stat_column_head.html" with title="Cost" tile_number=3 %}
+
+            {% include "a4_analytics/_stat_column.html" with player_list=stat_lists.now_cost.all tile_number=3 tile_suffix="all" stat="stats.now_cost" %}
+            {% include "a4_analytics/_stat_column.html" with player_list=stat_lists.now_cost.gkp tile_number=3 tile_suffix="gkp" stat="stats.now_cost" %}
+            {% include "a4_analytics/_stat_column.html" with player_list=stat_lists.now_cost.def tile_number=3 tile_suffix="def" stat="stats.now_cost" %}
+            {% include "a4_analytics/_stat_column.html" with player_list=stat_lists.now_cost.mid tile_number=3 tile_suffix="mid" stat="stats.now_cost" %}
+            {% include "a4_analytics/_stat_column.html" with player_list=stat_lists.now_cost.fwd tile_number=3 tile_suffix="fwd" stat="stats.now_cost" %}
+        </div>
+
+        <!-- Form -->
+
+        <div class="stat-column-div">
+            {% include "a4_analytics/_stat_column_head.html" with title="Form" tile_number=4 %}
+
+            {% include "a4_analytics/_stat_column.html" with player_list=stat_lists.form.all tile_number=4 tile_suffix="all" stat="stats.form" %}
+            {% include "a4_analytics/_stat_column.html" with player_list=stat_lists.form.gkp tile_number=4 tile_suffix="gkp" stat="stats.form" %}
+            {% include "a4_analytics/_stat_column.html" with player_list=stat_lists.form.def tile_number=4 tile_suffix="def" stat="stats.form" %}
+            {% include "a4_analytics/_stat_column.html" with player_list=stat_lists.form.mid tile_number=4 tile_suffix="mid" stat="stats.form" %}
+            {% include "a4_analytics/_stat_column.html" with player_list=stat_lists.form.fwd tile_number=4 tile_suffix="fwd" stat="stats.form" %}
+        </div>
+
+        <!-- Value Form -->
+
+        <div class="stat-column-div">
+            {% include "a4_analytics/_stat_column_head.html" with title="Value Form" tile_number=5 %}
+
+            {% include "a4_analytics/_stat_column.html" with player_list=stat_lists.value_form.all tile_number=5 tile_suffix="all" stat="stats.value_form" %}
+            {% include "a4_analytics/_stat_column.html" with player_list=stat_lists.value_form.gkp tile_number=5 tile_suffix="gkp" stat="stats.value_form" %}
+            {% include "a4_analytics/_stat_column.html" with player_list=stat_lists.value_form.def tile_number=5 tile_suffix="def" stat="stats.value_form" %}
+            {% include "a4_analytics/_stat_column.html" with player_list=stat_lists.value_form.mid tile_number=5 tile_suffix="mid" stat="stats.value_form" %}
+            {% include "a4_analytics/_stat_column.html" with player_list=stat_lists.value_form.fwd tile_number=5 tile_suffix="fwd" stat="stats.value_form" %}
+        </div>
+
+        <!-- Value Season -->
+
+        <div class="stat-column-div">
+            {% include "a4_analytics/_stat_column_head.html" with title="Value Season" tile_number=6 %}
+
+            {% include "a4_analytics/_stat_column.html" with player_list=stat_lists.value_season.all tile_number=6 tile_suffix="all" stat="stats.value_season" %}
+            {% include "a4_analytics/_stat_column.html" with player_list=stat_lists.value_season.gkp tile_number=6 tile_suffix="gkp" stat="stats.value_season" %}
+            {% include "a4_analytics/_stat_column.html" with player_list=stat_lists.value_season.def tile_number=6 tile_suffix="def" stat="stats.value_season" %}
+            {% include "a4_analytics/_stat_column.html" with player_list=stat_lists.value_season.mid tile_number=6 tile_suffix="mid" stat="stats.value_season" %}
+            {% include "a4_analytics/_stat_column.html" with player_list=stat_lists.value_season.fwd tile_number=6 tile_suffix="fwd" stat="stats.value_season" %}
+        </div>
+
+    </div>
+
+
+
+</div>
+
+{% endblock %}
+
+

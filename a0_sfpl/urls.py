@@ -18,7 +18,7 @@ from django.contrib import admin
 from django.urls import path
 from a1_core.views import HomeView
 from a2_fpl_data.views import DreamteamView, FixturesView
-from a4_analytics.views import ICT, InGameStats, Transfers, PlayerValue
+from a4_analytics.views import ICT, InGame, Transfers, PlayerValue
 from a5_predictions.views import EpNextView
 
 urlpatterns = [
@@ -28,7 +28,7 @@ urlpatterns = [
     path('ep/', EpNextView.as_view(), name="ep"),
     path('fixtures/<int:gameweek>/', FixturesView.as_view(), name="fixtures"),
     path('ict/', ICT.as_view(), name='ict'),
-    path('in-game/', InGameStats.as_view(), name='in-game'),
+    path('in-game/', InGame.as_view(), name='in-game'),
     path('transfers/', Transfers.as_view(), name='transfers'),
     path('player-value/', PlayerValue.as_view(), name='player-value'),
 ]

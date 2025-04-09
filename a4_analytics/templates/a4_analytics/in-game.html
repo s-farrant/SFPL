@@ -1,0 +1,169 @@
+{% extends "a1_core/base.html"%}
+{% load static %}
+
+{% block content %}
+
+<div class="page-div">
+
+    <div class="left-sidebar">
+        <h3 class="bar-header">Stats</h3>
+        <div class="sidebar-content">
+                <li class="bar-list">
+                            <a href="{% url 'ict' %}">ICT Stats</a>
+                </li>
+                <li class="bar-list">
+                    <a href="{% url 'in-game' %}">In-game Stats</a>
+                </li>
+                <li class="bar-list">
+                    <a href="{% url 'transfers' %}">Transfers</a>
+                </li>
+                <li class="bar-list">
+                    <a href="{% url 'player-value' %}">Player Value</a>
+                </li>
+        </div>
+    </div>
+
+
+    <div class="pitch-div-div stats-div">
+
+        <!-- Goals -->
+
+        <div class="stat-column-div">
+            {% include "a4_analytics/_stat_column_head.html" with title="Goals" tile_number=1 %}
+
+            {% include "a4_analytics/_stat_column.html" with player_list=stat_lists.goals_scored.all tile_number=1 tile_suffix="all" stat="stats.goals_scored" %}
+            {% include "a4_analytics/_stat_column.html" with player_list=stat_lists.goals_scored.gkp tile_number=1 tile_suffix="gkp" stat="stats.goals_scored" %}
+            {% include "a4_analytics/_stat_column.html" with player_list=stat_lists.goals_scored.def tile_number=1 tile_suffix="def" stat="stats.goals_scored" %}
+            {% include "a4_analytics/_stat_column.html" with player_list=stat_lists.goals_scored.mid tile_number=1 tile_suffix="mid" stat="stats.goals_scored" %}
+            {% include "a4_analytics/_stat_column.html" with player_list=stat_lists.goals_scored.fwd tile_number=1 tile_suffix="fwd" stat="stats.goals_scored" %}
+        </div>
+         
+        <!-- Assists -->
+
+        <div class="stat-column-div">
+            {% include "a4_analytics/_stat_column_head.html" with title="Assists" tile_number=2 %}
+
+            {% include "a4_analytics/_stat_column.html" with player_list=stat_lists.assists.all tile_number=2 tile_suffix="all" stat="stats.assists" %}
+            {% include "a4_analytics/_stat_column.html" with player_list=stat_lists.assists.gkp tile_number=2 tile_suffix="gkp" stat="stats.assists" %}
+            {% include "a4_analytics/_stat_column.html" with player_list=stat_lists.assists.def tile_number=2 tile_suffix="def" stat="stats.assists" %}
+            {% include "a4_analytics/_stat_column.html" with player_list=stat_lists.assists.mid tile_number=2 tile_suffix="mid" stat="stats.assists" %}
+            {% include "a4_analytics/_stat_column.html" with player_list=stat_lists.assists.fwd tile_number=2 tile_suffix="fwd" stat="stats.assists" %}
+        </div>
+
+        <!-- Clean Sheets -->
+
+        <div class="stat-column-div">
+            {% include "a4_analytics/_stat_column_head.html" with title="Clean Sheets" tile_number=3 %}
+
+            {% include "a4_analytics/_stat_column.html" with player_list=stat_lists.clean_sheets.all tile_number=3 tile_suffix="all" stat="stats.clean_sheets" %}
+            {% include "a4_analytics/_stat_column.html" with player_list=stat_lists.clean_sheets.gkp tile_number=3 tile_suffix="gkp" stat="stats.clean_sheets" %}
+            {% include "a4_analytics/_stat_column.html" with player_list=stat_lists.clean_sheets.def tile_number=3 tile_suffix="def" stat="stats.clean_sheets" %}
+            {% include "a4_analytics/_stat_column.html" with player_list=stat_lists.clean_sheets.mid tile_number=3 tile_suffix="mid" stat="stats.clean_sheets" %}
+            {% include "a4_analytics/_stat_column.html" with player_list=stat_lists.clean_sheets.fwd tile_number=3 tile_suffix="fwd" stat="stats.clean_sheets" %}
+        </div>
+
+        <!-- Bonus -->
+
+        <div class="stat-column-div">
+            {% include "a4_analytics/_stat_column_head.html" with title="Bonus" tile_number=4 %}
+
+            {% include "a4_analytics/_stat_column.html" with player_list=stat_lists.bonus.all tile_number=4 tile_suffix="all" stat="stats.bonus" %}
+            {% include "a4_analytics/_stat_column.html" with player_list=stat_lists.bonus.gkp tile_number=4 tile_suffix="gkp" stat="stats.bonus" %}
+            {% include "a4_analytics/_stat_column.html" with player_list=stat_lists.bonus.def tile_number=4 tile_suffix="def" stat="stats.bonus" %}
+            {% include "a4_analytics/_stat_column.html" with player_list=stat_lists.bonus.mid tile_number=4 tile_suffix="mid" stat="stats.bonus" %}
+            {% include "a4_analytics/_stat_column.html" with player_list=stat_lists.bonus.fwd tile_number=4 tile_suffix="fwd" stat="stats.bonus" %}
+        </div>
+
+        <!-- Expected Goals -->
+
+        <div class="stat-column-div">
+            {% include "a4_analytics/_stat_column_head.html" with title="xGoals" tile_number=5 %}
+
+            {% include "a4_analytics/_stat_column.html" with player_list=stat_lists.expected_goals.all tile_number=5 tile_suffix="all" stat="stats.expected_goals" %}
+            {% include "a4_analytics/_stat_column.html" with player_list=stat_lists.expected_goals.gkp tile_number=5 tile_suffix="gkp" stat="stats.expected_goals" %}
+            {% include "a4_analytics/_stat_column.html" with player_list=stat_lists.expected_goals.def tile_number=5 tile_suffix="def" stat="stats.expected_goals" %}
+            {% include "a4_analytics/_stat_column.html" with player_list=stat_lists.expected_goals.mid tile_number=5 tile_suffix="mid" stat="stats.expected_goals" %}
+            {% include "a4_analytics/_stat_column.html" with player_list=stat_lists.expected_goals.fwd tile_number=5 tile_suffix="fwd" stat="stats.expected_goals" %}
+        </div>
+
+        <!-- Expected Assists -->
+
+        <div class="stat-column-div">
+            {% include "a4_analytics/_stat_column_head.html" with title="xAssists" tile_number=6 %}
+
+            {% include "a4_analytics/_stat_column.html" with player_list=stat_lists.expected_assists.all tile_number=6 tile_suffix="all" stat="stats.expected_assists" %}
+            {% include "a4_analytics/_stat_column.html" with player_list=stat_lists.expected_assists.gkp tile_number=6 tile_suffix="gkp" stat="stats.expected_assists" %}
+            {% include "a4_analytics/_stat_column.html" with player_list=stat_lists.expected_assists.def tile_number=6 tile_suffix="def" stat="stats.expected_assists" %}
+            {% include "a4_analytics/_stat_column.html" with player_list=stat_lists.expected_assists.mid tile_number=6 tile_suffix="mid" stat="stats.expected_assists" %}
+            {% include "a4_analytics/_stat_column.html" with player_list=stat_lists.expected_assists.fwd tile_number=6 tile_suffix="fwd" stat="stats.expected_assists" %}
+        </div>
+
+        <!-- Expected Goal Involvements -->
+
+        <div class="stat-column-div">
+            {% include "a4_analytics/_stat_column_head.html" with title="xGoal Involvements" tile_number=7 %}
+
+            {% include "a4_analytics/_stat_column.html" with player_list=stat_lists.expected_goal_involvements.all tile_number=7 tile_suffix="all" stat="stats.expected_goal_involvements" %}
+            {% include "a4_analytics/_stat_column.html" with player_list=stat_lists.expected_goal_involvements.gkp tile_number=7 tile_suffix="gkp" stat="stats.expected_goal_involvements" %}
+            {% include "a4_analytics/_stat_column.html" with player_list=stat_lists.expected_goal_involvements.def tile_number=7 tile_suffix="def" stat="stats.expected_goal_involvements" %}
+            {% include "a4_analytics/_stat_column.html" with player_list=stat_lists.expected_goal_involvements.mid tile_number=7 tile_suffix="mid" stat="stats.expected_goal_involvements" %}
+            {% include "a4_analytics/_stat_column.html" with player_list=stat_lists.expected_goal_involvements.fwd tile_number=7 tile_suffix="fwd" stat="stats.expected_goal_involvements" %}
+        </div>
+
+        <!-- Expected Goals Conceded -->
+
+        <div class="stat-column-div">
+            {% include "a4_analytics/_stat_column_head.html" with title="xGoals Conceded" tile_number=8 %}
+
+            {% include "a4_analytics/_stat_column.html" with player_list=stat_lists.expected_goals_conceded.all tile_number=8 tile_suffix="all" stat="stats.expected_goals_conceded" %}
+            {% include "a4_analytics/_stat_column.html" with player_list=stat_lists.expected_goals_conceded.gkp tile_number=8 tile_suffix="gkp" stat="stats.expected_goals_conceded" %}
+            {% include "a4_analytics/_stat_column.html" with player_list=stat_lists.expected_goals_conceded.def tile_number=8 tile_suffix="def" stat="stats.expected_goals_conceded" %}
+            {% include "a4_analytics/_stat_column.html" with player_list=stat_lists.expected_goals_conceded.mid tile_number=8 tile_suffix="mid" stat="stats.expected_goals_conceded" %}
+            {% include "a4_analytics/_stat_column.html" with player_list=stat_lists.expected_goals_conceded.fwd tile_number=8 tile_suffix="fwd" stat="stats.expected_goals_conceded" %}
+        </div>
+
+        <!-- Expected Goals per 90 -->
+
+        <div class="stat-column-div">
+            {% include "a4_analytics/_stat_column_head.html" with title="xGoals per 90" tile_number=9 %}
+
+            {% include "a4_analytics/_stat_column.html" with player_list=stat_lists.expected_goals_per_90.all tile_number=9 tile_suffix="all" stat="stats.expected_goals_per_90" %}
+            {% include "a4_analytics/_stat_column.html" with player_list=stat_lists.expected_goals_per_90.gkp tile_number=9 tile_suffix="gkp" stat="stats.expected_goals_per_90" %}
+            {% include "a4_analytics/_stat_column.html" with player_list=stat_lists.expected_goals_per_90.def tile_number=9 tile_suffix="def" stat="stats.expected_goals_per_90" %}
+            {% include "a4_analytics/_stat_column.html" with player_list=stat_lists.expected_goals_per_90.mid tile_number=9 tile_suffix="mid" stat="stats.expected_goals_per_90" %}
+            {% include "a4_analytics/_stat_column.html" with player_list=stat_lists.expected_goals_per_90.fwd tile_number=9 tile_suffix="fwd" stat="stats.expected_goals_per_90" %}
+        </div>
+
+        <!-- Expected Assists per 90 -->
+
+        <div class="stat-column-div">
+            {% include "a4_analytics/_stat_column_head.html" with title="xAssists per 90" tile_number=10 %}
+
+            {% include "a4_analytics/_stat_column.html" with player_list=stat_lists.expected_assists_per_90.all tile_number=10 tile_suffix="all" stat="stats.expected_assists_per_90" %}
+            {% include "a4_analytics/_stat_column.html" with player_list=stat_lists.expected_assists_per_90.gkp tile_number=10 tile_suffix="gkp" stat="stats.expected_assists_per_90" %}
+            {% include "a4_analytics/_stat_column.html" with player_list=stat_lists.expected_assists_per_90.def tile_number=10 tile_suffix="def" stat="stats.expected_assists_per_90" %}
+            {% include "a4_analytics/_stat_column.html" with player_list=stat_lists.expected_assists_per_90.mid tile_number=10 tile_suffix="mid" stat="stats.expected_assists_per_90" %}
+            {% include "a4_analytics/_stat_column.html" with player_list=stat_lists.expected_assists_per_90.fwd tile_number=10 tile_suffix="fwd" stat="stats.expected_assists_per_90" %}
+        </div>
+
+        <!-- Expected Goal Invovements per 90 -->
+
+        <div class="stat-column-div">
+            {% include "a4_analytics/_stat_column_head.html" with title="xGoal Involvements per 90" tile_number=11 %}
+
+            {% include "a4_analytics/_stat_column.html" with player_list=stat_lists.expected_goal_involvements_per_90.all tile_number=11 tile_suffix="all" stat="stats.expected_goal_involvements_per_90" %}
+            {% include "a4_analytics/_stat_column.html" with player_list=stat_lists.expected_goal_involvements_per_90.gkp tile_number=11 tile_suffix="gkp" stat="stats.expected_goal_involvements_per_90" %}
+            {% include "a4_analytics/_stat_column.html" with player_list=stat_lists.expected_goal_involvements_per_90.def tile_number=11 tile_suffix="def" stat="stats.expected_goal_involvements_per_90" %}
+            {% include "a4_analytics/_stat_column.html" with player_list=stat_lists.expected_goal_involvements_per_90.mid tile_number=11 tile_suffix="mid" stat="stats.expected_goal_involvements_per_90" %}
+            {% include "a4_analytics/_stat_column.html" with player_list=stat_lists.expected_goal_involvements_per_90.fwd tile_number=11 tile_suffix="fwd" stat="stats.expected_goal_involvements_per_90" %}
+        </div>
+
+    </div>
+
+
+
+</div>
+
+{% endblock %}
+
+

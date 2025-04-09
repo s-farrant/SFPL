@@ -14,8 +14,8 @@ class PlayerDynamicData(models.Model):
     points_per_game = models.FloatField(default=0)
 
     now_cost = models.FloatField(default=0)
-    cost_change_event = models.IntegerField(default=0)
-    cost_change_start = models.IntegerField(default=0)
+    cost_change_event = models.FloatField(default=0)
+    cost_change_start = models.FloatField(default=0)
     form = models.FloatField(default=0)
     value_form = models.FloatField(default=0)
     value_season = models.FloatField(default=0)

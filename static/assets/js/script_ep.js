@@ -15,7 +15,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Show All
     allButton.addEventListener('click', function() {
-        console.log('Button1 clicked!');
             allButton.style.boxShadow = 'inset 0 -1px 0 #963cff';
             gkpButton.style.boxShadow = 'inset 0 -0px 0 #963cff'; 
             defButton.style.boxShadow = 'inset 0 -0px 0 #963cff'; 
@@ -30,7 +29,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Show All
     gkpButton.addEventListener('click', function() {
-        console.log('Button2 clicked!');
             allButton.style.boxShadow = 'inset 0 -0px 0 #963cff';
             gkpButton.style.boxShadow = 'inset 0 -1px 0 #963cff'; 
             defButton.style.boxShadow = 'inset 0 -0px 0 #963cff'; 
@@ -45,7 +43,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Show All
     defButton.addEventListener('click', function() {
-        console.log('Button3 clicked!');
             allButton.style.boxShadow = 'inset 0 -0px 0 #963cff';
             gkpButton.style.boxShadow = 'inset 0 -0px 0 #963cff'; 
             defButton.style.boxShadow = 'inset 0 -1px 0 #963cff'; 
@@ -60,7 +57,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Show All
     midButton.addEventListener('click', function() {
-        console.log('Button4 clicked!');
             allButton.style.boxShadow = 'inset 0 -0px 0 #963cff';
             gkpButton.style.boxShadow = 'inset 0 -0px 0 #963cff'; 
             defButton.style.boxShadow = 'inset 0 -0px 0 #963cff'; 
@@ -75,7 +71,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Show All
     fwdButton.addEventListener('click', function() {
-        console.log('Button5 clicked!');
+
             allButton.style.boxShadow = 'inset 0 -0px 0 #963cff';
             gkpButton.style.boxShadow = 'inset 0 -0px 0 #963cff'; 
             defButton.style.boxShadow = 'inset 0 -0px 0 #963cff'; 

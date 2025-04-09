@@ -1,0 +1,35 @@
+{% load custom_filters %}
+
+<div class="hide-scrollbar" id="tile{{ tile_number }}-{{ tile_suffix }}">
+    <div class="stat-column">
+        {% for player in player_list %}
+            {% if forloop.first %}
+            <div class="bar-list-rank-first t{{ player.team.code }}">
+                <div class="first-player-info">
+                    <span class="rank-sidebar-first">{{ forloop.counter  }}</span>
+                    <span class="player-first-name-sidebar-first">{{ player.player.first_name }}</span>
+                    <span class="second-name-container scaling-container"><span class="player-second-name-sidebar-first scaling">{{ player.player.second_name }}</span></span>
+                    {% if player.team.code != 14 %}
+                        <img class="sidebar-crest-first" src="https://resources.premierleague.com/premierleague/badges/100/t{{ player.team.code }}.png">
+                    {% else %}
+                        <img class="sidebar-crest-first" src="https://resources.premierleague.com/premierleague/badges/100/t{{ player.team.code }}-hover.png">
+                    {% endif %}
+                    <span class="player-points-sidebar-first">{{ player|get_item:stat }}</span>
+                </div>
+                <div class="first-player-image">
+                    <img src="https://resources.premierleague.com/premierleague/photos/players/110x140/p{{ player.player.photo|slice:":-4" }}.png">
+                </div>
+            </div>
+            {% else %}
+                <div class="bar-list-rank">
+                    <span class="rank-sidebar">{{ forloop.counter }}</span>
+                    <img class="sidebar-crest" src="https://resources.premierleague.com/premierleague/badges/100/t{{ player.team.code }}.png">
+                    <span class="player-name-sidebar">{{ player.player.web_name }} - {{ player.player.position.name_short }}</span>
+                    <span class="player-points-sidebar">{{ player|get_item:stat }}</span>
+                </div>
+                {% endif %}
+        {% endfor %}
+    </div>
+</div>
+
+

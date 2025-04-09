@@ -3,336 +3,161 @@ from django.shortcuts import render
 from a2_fpl_data.models import Player, Team, Gameweek
 from .models import PlayerDynamicData
 from django.views import View
-from django.db.models import Q
+from pprint import pprint
 
 logger = logging.getLogger(__name__)
+
+# Creating the Context structure
+
+def create_context(model, stat_fields):
+
+    current_gameweek = Gameweek.objects.get(is_current=True)
+
+    player_details = model.objects.filter(gameweek=current_gameweek)
+
+    position_ids = {
+        'gkp': 1,
+        'def': 2,
+        'mid': 3,
+        'fwd': 4
+    }
+
+    def build_player_list(players):
+        return [
+            {
+                "player": p.player,
+                "team": p.player.team,
+                "stats": {field: getattr(p, field) for field in stat_fields}
+            }
+            for p in players
+            if p.player.position.name_short != "MNG"
+        ]
+    
+    all_players = build_player_list(player_details)
+
+    position_lists = {
+        pos: build_player_list(player_details.filter(gameweek=current_gameweek, player__position__position_id=pos_id))
+        for pos, pos_id in position_ids.items()
+    }
+
+    def sort_by_stat(players, stat):
+        return sorted(players, key=lambda x: x['stats'][stat], reverse=True)
+
+    context = {
+        "stat_lists": {},
+        "stat_keys": stat_fields
+    }
+
+    for stat in stat_fields:
+        context['stat_lists'][stat] = {}
+        context['stat_lists'][stat]['all'] = sort_by_stat(all_players, stat)
+
+    for pos, players in position_lists.items():
+        for stat in stat_fields:
+            context['stat_lists'][stat][pos] = sort_by_stat(players, stat)
+
+    return context
+
+def process_dict_percent(context):
+    for key, value in context.items():
+        
+        if isinstance(value, dict):
+            process_dict_percent(value)
+        
+        elif isinstance(value, list):
+            for item in value:
+                if isinstance(item, dict) and 'stats' in item and 'selected_by_percent' in item['stats']:
+                    selected_by_percent = item['stats']['selected_by_percent']
+                    if isinstance(selected_by_percent, (int, float)):
+                        item['stats']['selected_by_percent'] = str(selected_by_percent) + "%"
+                    else:
+                        break
+    return context
+
+def process_dict_number_format(context):
+    for key, value in context.items():
+        
+        if isinstance(value, dict):
+            process_dict_number_format(value)
+        
+        elif isinstance(value, list):
+            for item in value:
+                if isinstance(item, dict) and 'stats' in item and 'transfers_in' in item['stats']:
+                    transfers_in = item['stats']['transfers_in']
+                    transfers_in_event = item['stats']['transfers_in_event']
+                    transfers_out = item['stats']['transfers_out']
+                    transfers_out_event = item['stats']['transfers_out_event']
+                    if isinstance(transfers_in, (int, float)):
+                        item['stats']['transfers_in'] = f"{transfers_in:,}"
+                        item['stats']['transfers_in_event'] = f"{transfers_in_event:,}"
+                        item['stats']['transfers_out'] = f"{transfers_out:,}"
+                        item['stats']['transfers_out_event'] = f"{transfers_out_event:,}"
+                    else:
+                        break
+    return context
+
+def process_dict_cost(context):
+    for key, value in context.items():
+        
+        if isinstance(value, dict):
+            process_dict_cost(value)
+        
+        elif isinstance(value, list):
+            for item in value:
+                if isinstance(item, dict) and 'stats' in item and 'now_cost' in item['stats']:
+                    now_cost = item['stats']['now_cost']
+                    if isinstance(now_cost, (int, float)):
+                        item['stats']['now_cost'] = f"£{now_cost:.2f}"[:-1]+ "m"
+                    else:
+                        break
+    return context
 
 # ICT
 
 class ICT(View):
     def get(self, request):
-        
-        current_gameweek = Gameweek.objects.get(is_current=True)
-
-        player_details = PlayerDynamicData.objects.filter(gameweek=current_gameweek)
-
-
-        player_details_gkp = PlayerDynamicData.objects.filter(
-            Q(gameweek=current_gameweek) & Q(player__position__position_id=1))
-        
-        player_details_def = PlayerDynamicData.objects.filter(
-            Q(gameweek=current_gameweek) & Q(player__position__position_id=2))
-        
-        player_details_mid = PlayerDynamicData.objects.filter(
-            Q(gameweek=current_gameweek) & Q(player__position__position_id=3))
-        
-        player_details_fwd = PlayerDynamicData.objects.filter(
-            Q(gameweek=current_gameweek) & Q(player__position__position_id=4))
-    
-
-        player_list = []
-        player_list_gkp = []
-        player_list_def = []
-        player_list_mid = []
-        player_list_fwd = []
-
-        # all
-
-        for player in player_details:
-            player_list.append({
-                "player": player.player,
-                "team": player.player.team,
-                "ict_stats": {
-                    "influence": player.influence,
-                    "influence_rank": player.influence_rank,
-                    "influence_rank_type": player.influence_rank_type,
-                    "creativity": player.creativity,
-                    "creativity_rank": player.creativity_rank,
-                    "creativity_rank_type": player.creativity_rank_type,
-                    "threat": player.threat,
-                    "threat_rank": player.threat_rank,
-                    "threat_rank_type": player.threat_rank_type,
-                    "ict_index": player.ict_index,
-                    "ict_index_rank": player.ict_index_rank,
-                    "ict_index_rank_type": player.ict_index_rank_type
-                }
-            })
-
-        # gkp
-        
-        for player in player_details_gkp:
-            player_list_gkp.append({
-                "player": player.player,
-                "team": player.player.team,
-                "ict_stats": {
-                    "influence": player.influence,
-                    "influence_rank": player.influence_rank,
-                    "influence_rank_type": player.influence_rank_type,
-                    "creativity": player.creativity,
-                    "creativity_rank": player.creativity_rank,
-                    "creativity_rank_type": player.creativity_rank_type,
-                    "threat": player.threat,
-                    "threat_rank": player.threat_rank,
-                    "threat_rank_type": player.threat_rank_type,
-                    "ict_index": player.ict_index,
-                    "ict_index_rank": player.ict_index_rank,
-                    "ict_index_rank_type": player.ict_index_rank_type
-                }
-            })
-
-        # def
-
-        for player in player_details_def:
-            player_list_def.append({
-                "player": player.player,
-                "team": player.player.team,
-                "ict_stats": {
-                    "influence": player.influence,
-                    "influence_rank": player.influence_rank,
-                    "influence_rank_type": player.influence_rank_type,
-                    "creativity": player.creativity,
-                    "creativity_rank": player.creativity_rank,
-                    "creativity_rank_type": player.creativity_rank_type,
-                    "threat": player.threat,
-                    "threat_rank": player.threat_rank,
-                    "threat_rank_type": player.threat_rank_type,
-                    "ict_index": player.ict_index,
-                    "ict_index_rank": player.ict_index_rank,
-                    "ict_index_rank_type": player.ict_index_rank_type
-                }
-            })
-
-        # mid
-
-        for player in player_details_mid:
-            player_list_mid.append({
-                "player": player.player,
-                "team": player.player.team,
-                "ict_stats": {
-                    "influence": player.influence,
-                    "influence_rank": player.influence_rank,
-                    "influence_rank_type": player.influence_rank_type,
-                    "creativity": player.creativity,
-                    "creativity_rank": player.creativity_rank,
-                    "creativity_rank_type": player.creativity_rank_type,
-                    "threat": player.threat,
-                    "threat_rank": player.threat_rank,
-                    "threat_rank_type": player.threat_rank_type,
-                    "ict_index": player.ict_index,
-                    "ict_index_rank": player.ict_index_rank,
-                    "ict_index_rank_type": player.ict_index_rank_type
-                }
-            })
-
-        # fwd
-
-        for player in player_details_fwd:
-            player_list_fwd.append({
-                "player": player.player,
-                "team": player.player.team,
-                "ict_stats": {
-                    "influence": player.influence,
-                    "influence_rank": player.influence_rank,
-                    "influence_rank_type": player.influence_rank_type,
-                    "creativity": player.creativity,
-                    "creativity_rank": player.creativity_rank,
-                    "creativity_rank_type": player.creativity_rank_type,
-                    "threat": player.threat,
-                    "threat_rank": player.threat_rank,
-                    "threat_rank_type": player.threat_rank_type,
-                    "ict_index": player.ict_index,
-                    "ict_index_rank": player.ict_index_rank,
-                    "ict_index_rank_type": player.ict_index_rank_type
-                }
-            })
-
-        sorted_influence = sorted(player_list, key=lambda x: x['ict_stats']['influence'], reverse=True)
-        sorted_creativity = sorted(player_list, key=lambda x: x['ict_stats']['creativity'], reverse=True)
-        sorted_threat = sorted(player_list, key=lambda x: x['ict_stats']['threat'], reverse=True)
-        sorted_ict_index = sorted(player_list, key=lambda x: x['ict_stats']['ict_index'], reverse=True)
-
-        sorted_influence_gkp = sorted(player_list_gkp, key=lambda x: x['ict_stats']['influence'], reverse=True)
-        sorted_creativity_gkp = sorted(player_list_gkp, key=lambda x: x['ict_stats']['creativity'], reverse=True)
-        sorted_threat_gkp = sorted(player_list_gkp, key=lambda x: x['ict_stats']['threat'], reverse=True)
-        sorted_ict_index_gkp = sorted(player_list_gkp, key=lambda x: x['ict_stats']['ict_index'], reverse=True)
-
-        sorted_influence_def = sorted(player_list_def, key=lambda x: x['ict_stats']['influence'], reverse=True)
-        sorted_creativity_def = sorted(player_list_def, key=lambda x: x['ict_stats']['creativity'], reverse=True)
-        sorted_threat_def = sorted(player_list_def, key=lambda x: x['ict_stats']['threat'], reverse=True)
-        sorted_ict_index_def = sorted(player_list_def, key=lambda x: x['ict_stats']['ict_index'], reverse=True)
-
-        sorted_influence_mid = sorted(player_list_mid, key=lambda x: x['ict_stats']['influence'], reverse=True)
-        sorted_creativity_mid = sorted(player_list_mid, key=lambda x: x['ict_stats']['creativity'], reverse=True)
-        sorted_threat_mid = sorted(player_list_mid, key=lambda x: x['ict_stats']['threat'], reverse=True)
-        sorted_ict_index_mid = sorted(player_list_mid, key=lambda x: x['ict_stats']['ict_index'], reverse=True)
-
-        sorted_influence_fwd = sorted(player_list_fwd, key=lambda x: x['ict_stats']['influence'], reverse=True)
-        sorted_creativity_fwd = sorted(player_list_fwd, key=lambda x: x['ict_stats']['creativity'], reverse=True)
-        sorted_threat_fwd = sorted(player_list_fwd, key=lambda x: x['ict_stats']['threat'], reverse=True)
-        sorted_ict_index_fwd = sorted(player_list_fwd, key=lambda x: x['ict_stats']['ict_index'], reverse=True)
-
-        context = {
-            "sorted_influence": sorted_influence,
-            "sorted_creativity": sorted_creativity,
-            "sorted_threat": sorted_threat,
-            "sorted_ict": sorted_ict_index,
-
-            "sorted_influence_gkp": sorted_influence_gkp,
-            "sorted_creativity_gkp": sorted_creativity_gkp,
-            "sorted_threat_gkp": sorted_threat_gkp,
-            "sorted_ict_gkp": sorted_ict_index_gkp,
-
-            "sorted_influence_def": sorted_influence_def,
-            "sorted_creativity_def": sorted_creativity_def,
-            "sorted_threat_def": sorted_threat_def,
-            "sorted_ict_def": sorted_ict_index_def,
-
-            "sorted_influence_mid": sorted_influence_mid,
-            "sorted_creativity_mid": sorted_creativity_mid,
-            "sorted_threat_mid": sorted_threat_mid,
-            "sorted_ict_mid": sorted_ict_index_mid,
-
-            "sorted_influence_fwd": sorted_influence_fwd,
-            "sorted_creativity_fwd": sorted_creativity_fwd,
-            "sorted_threat_fwd": sorted_threat_fwd,
-            "sorted_ict_fwd": sorted_ict_index_fwd
-        }
-    
+        context = create_context(
+            PlayerDynamicData, 
+            stat_fields=["influence", "creativity", "threat", "ict_index"]
+            )
         return render(request, 'a4_analytics/ict.html', context)
-    
-
-# In-game
-
-class InGameStats(View):
-    def get(self, request):
-        
-        current_gameweek = Gameweek.objects.get(is_current=True)
-
-        player_details = PlayerDynamicData.objects.filter(gameweek=current_gameweek)
-
-        player_list = []
-
-        for player in player_details:
-            player_list.append({
-                "player": player.player,
-                "team": player.player.team,
-                "in_game_stats": {
-                    "goals_scored": 1,
-                    "assists": 1,
-                    "clean_sheets": 1,
-                    "bonus": 1,
-                    "expected_goals": 1,
-                    "expected_assists": 1,
-                    "expected_goal_involvements": 1,
-                    "expected_goals_conceded": 1,
-                    "expected_goals_per_90": 1,
-                    "expected_assists_per_90": 1,
-                    "expected_goal_involvements_per_90": 1,
-                    "expected_goals_conceded_per_90": 1
-                }
-            })
-
-        sorted_influence = sorted(player_list, key=lambda x: x['ict_stats']['influence'], reverse=True)
-        sorted_creativity = sorted(player_list, key=lambda x: x['ict_stats']['creativity'], reverse=True)
-        sorted_threat = sorted(player_list, key=lambda x: x['ict_stats']['threat'], reverse=True)
-        sorted_ict_index = sorted(player_list, key=lambda x: x['ict_stats']['ict_index'], reverse=True)
-
-        context = {
-            "sorted_influence": sorted_influence,
-            "sorted_creativity": sorted_creativity,
-            "sorted_threat": sorted_threat,
-            "sorted_ict": sorted_ict_index
-        }
-    
-        return render(request, 'a4_analytics/in-game.html', context)
-    
-# Transfers
-
-class Transfers(View):
-    def get(self, request):
-        
-        current_gameweek = Gameweek.objects.get(is_current=True)
-
-        player_details = PlayerDynamicData.objects.filter(gameweek=current_gameweek)
-
-        player_list = []
-
-        for player in player_details:
-            player_list.append({
-                "player": player.player,
-                "team": player.player.team,
-                "ict_stats": {
-                    "influence": player.influence,
-                    "influence_rank": player.influence_rank,
-                    "influence_rank_type": player.influence_rank_type,
-                    "creativity": player.creativity,
-                    "creativity_rank": player.creativity_rank,
-                    "creativity_rank_type": player.creativity_rank_type,
-                    "threat": player.threat,
-                    "threat_rank": player.threat_rank,
-                    "threat_rank_type": player.threat_rank_type,
-                    "ict_index": player.ict_index,
-                    "ict_index_rank": player.ict_index_rank,
-                    "ict_index_rank_type": player.ict_index_rank_type
-                }
-            })
-
-        sorted_influence = sorted(player_list, key=lambda x: x['ict_stats']['influence'], reverse=True)
-        sorted_creativity = sorted(player_list, key=lambda x: x['ict_stats']['creativity'], reverse=True)
-        sorted_threat = sorted(player_list, key=lambda x: x['ict_stats']['threat'], reverse=True)
-        sorted_ict_index = sorted(player_list, key=lambda x: x['ict_stats']['ict_index'], reverse=True)
-
-        context = {
-            "sorted_influence": sorted_influence,
-            "sorted_creativity": sorted_creativity,
-            "sorted_threat": sorted_threat,
-            "sorted_ict": sorted_ict_index
-        }
-    
-        return render(request, 'a4_analytics/transfers.html', context)
     
 
 # Player value
 
 class PlayerValue(View):
     def get(self, request):
-        
-        current_gameweek = Gameweek.objects.get(is_current=True)
+        context = create_context(
+            PlayerDynamicData, 
+            stat_fields=["total_points", "points_per_game", "now_cost", "form", "value_season", "value_form"]
+            )
 
-        player_details = PlayerDynamicData.objects.filter(gameweek=current_gameweek)
+        context = process_dict_cost(context)
 
-        player_list = []
-
-        for player in player_details:
-            player_list.append({
-                "player": player.player,
-                "team": player.player.team,
-                "ict_stats": {
-                    "influence": player.influence,
-                    "influence_rank": player.influence_rank,
-                    "influence_rank_type": player.influence_rank_type,
-                    "creativity": player.creativity,
-                    "creativity_rank": player.creativity_rank,
-                    "creativity_rank_type": player.creativity_rank_type,
-                    "threat": player.threat,
-                    "threat_rank": player.threat_rank,
-                    "threat_rank_type": player.threat_rank_type,
-                    "ict_index": player.ict_index,
-                    "ict_index_rank": player.ict_index_rank,
-                    "ict_index_rank_type": player.ict_index_rank_type
-                }
-            })
-
-        sorted_influence = sorted(player_list, key=lambda x: x['ict_stats']['influence'], reverse=True)
-        sorted_creativity = sorted(player_list, key=lambda x: x['ict_stats']['creativity'], reverse=True)
-        sorted_threat = sorted(player_list, key=lambda x: x['ict_stats']['threat'], reverse=True)
-        sorted_ict_index = sorted(player_list, key=lambda x: x['ict_stats']['ict_index'], reverse=True)
-
-        context = {
-            "sorted_influence": sorted_influence,
-            "sorted_creativity": sorted_creativity,
-            "sorted_threat": sorted_threat,
-            "sorted_ict": sorted_ict_index
-        }
-    
         return render(request, 'a4_analytics/player-value.html', context)
+    
+# In-game
+
+class InGame(View):
+    def get(self, request):
+        context = create_context(
+            PlayerDynamicData, 
+            stat_fields=["goals_scored", "assists", "clean_sheets", "bonus", "expected_goals", "expected_assists", "expected_goal_involvements", "expected_goals_conceded", "expected_goals_per_90", "expected_assists_per_90", "expected_goal_involvements_per_90"]
+            )
+        
+        return render(request, 'a4_analytics/in-game.html', context)
+
+
+# Transfers   
+
+class Transfers(View):
+    def get(self, request):
+        context = create_context(
+            PlayerDynamicData, 
+            stat_fields=["cost_change_start", "cost_change_event", "selected_by_percent", "transfers_in", "transfers_in_event", "transfers_out", "transfers_out_event"]
+            )
+        
+        context = process_dict_percent(context)
+        context = process_dict_number_format(context)
+
+        return render(request, 'a4_analytics/transfers.html', context)

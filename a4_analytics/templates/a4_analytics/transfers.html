@@ -1,0 +1,123 @@
+{% extends "a1_core/base.html"%}
+{% load static %}
+
+{% block content %}
+
+<div class="page-div">
+
+    <div class="left-sidebar">
+        <h3 class="bar-header">Stats</h3>
+        <div class="sidebar-content">
+                <li class="bar-list">
+                            <a href="{% url 'ict' %}">ICT Stats</a>
+                </li>
+                <li class="bar-list">
+                    <a href="{% url 'in-game' %}">In-game Stats</a>
+                </li>
+                <li class="bar-list">
+                    <a href="{% url 'transfers' %}">Transfers</a>
+                </li>
+                <li class="bar-list">
+                    <a href="{% url 'player-value' %}">Player Value</a>
+                </li>
+        </div>
+    </div>
+
+
+    <div class="pitch-div-div stats-div">
+
+        <!-- Cost Change Start -->
+
+        <div class="stat-column-div">
+            {% include "a4_analytics/_stat_column_head.html" with title="Cost Change Start" tile_number=1 %}
+
+            {% include "a4_analytics/_stat_column.html" with player_list=stat_lists.cost_change_start.all tile_number=1 tile_suffix="all" stat="stats.cost_change_start" %}
+            {% include "a4_analytics/_stat_column.html" with player_list=stat_lists.cost_change_start.gkp tile_number=1 tile_suffix="gkp" stat="stats.cost_change_start" %}
+            {% include "a4_analytics/_stat_column.html" with player_list=stat_lists.cost_change_start.def tile_number=1 tile_suffix="def" stat="stats.cost_change_start" %}
+            {% include "a4_analytics/_stat_column.html" with player_list=stat_lists.cost_change_start.mid tile_number=1 tile_suffix="mid" stat="stats.cost_change_start" %}
+            {% include "a4_analytics/_stat_column.html" with player_list=stat_lists.cost_change_start.fwd tile_number=1 tile_suffix="fwd" stat="stats.cost_change_start" %}
+        </div>
+         
+        <!-- Cost Change Event -->
+
+        <div class="stat-column-div">
+            {% include "a4_analytics/_stat_column_head.html" with title="Cost Change Event" tile_number=2 %}
+
+            {% include "a4_analytics/_stat_column.html" with player_list=stat_lists.cost_change_event.all tile_number=2 tile_suffix="all" stat="stats.cost_change_event" %}
+            {% include "a4_analytics/_stat_column.html" with player_list=stat_lists.cost_change_event.gkp tile_number=2 tile_suffix="gkp" stat="stats.cost_change_event" %}
+            {% include "a4_analytics/_stat_column.html" with player_list=stat_lists.cost_change_event.def tile_number=2 tile_suffix="def" stat="stats.cost_change_event" %}
+            {% include "a4_analytics/_stat_column.html" with player_list=stat_lists.cost_change_event.mid tile_number=2 tile_suffix="mid" stat="stats.cost_change_event" %}
+            {% include "a4_analytics/_stat_column.html" with player_list=stat_lists.cost_change_event.fwd tile_number=2 tile_suffix="fwd" stat="stats.cost_change_event" %}
+        </div>
+
+        <!-- Selected by Percent -->
+
+        <div class="stat-column-div">
+            {% include "a4_analytics/_stat_column_head.html" with title="Selected by Percent" tile_number=3 %}
+
+            {% include "a4_analytics/_stat_column.html" with player_list=stat_lists.selected_by_percent.all tile_number=3 tile_suffix="all" stat="stats.selected_by_percent" %}
+            {% include "a4_analytics/_stat_column.html" with player_list=stat_lists.selected_by_percent.gkp tile_number=3 tile_suffix="gkp" stat="stats.selected_by_percent" %}
+            {% include "a4_analytics/_stat_column.html" with player_list=stat_lists.selected_by_percent.def tile_number=3 tile_suffix="def" stat="stats.selected_by_percent" %}
+            {% include "a4_analytics/_stat_column.html" with player_list=stat_lists.selected_by_percent.mid tile_number=3 tile_suffix="mid" stat="stats.selected_by_percent" %}
+            {% include "a4_analytics/_stat_column.html" with player_list=stat_lists.selected_by_percent.fwd tile_number=3 tile_suffix="fwd" stat="stats.selected_by_percent" %}
+        </div>
+
+        <!-- Transfers In -->
+
+        <div class="stat-column-div">
+            {% include "a4_analytics/_stat_column_head.html" with title="Transfers In" tile_number=4 %}
+
+            {% include "a4_analytics/_stat_column.html" with player_list=stat_lists.transfers_in.all tile_number=4 tile_suffix="all" stat="stats.transfers_in" %}
+            {% include "a4_analytics/_stat_column.html" with player_list=stat_lists.transfers_in.gkp tile_number=4 tile_suffix="gkp" stat="stats.transfers_in" %}
+            {% include "a4_analytics/_stat_column.html" with player_list=stat_lists.transfers_in.def tile_number=4 tile_suffix="def" stat="stats.transfers_in" %}
+            {% include "a4_analytics/_stat_column.html" with player_list=stat_lists.transfers_in.mid tile_number=4 tile_suffix="mid" stat="stats.transfers_in" %}
+            {% include "a4_analytics/_stat_column.html" with player_list=stat_lists.transfers_in.fwd tile_number=4 tile_suffix="fwd" stat="stats.transfers_in" %}
+        </div>
+
+        <!-- Transfers In Event -->
+
+        <div class="stat-column-div">
+            {% include "a4_analytics/_stat_column_head.html" with title="Transfers In Event" tile_number=5 %}
+
+            {% include "a4_analytics/_stat_column.html" with player_list=stat_lists.transfers_in_event.all tile_number=5 tile_suffix="all" stat="stats.transfers_in_event" %}
+            {% include "a4_analytics/_stat_column.html" with player_list=stat_lists.transfers_in_event.gkp tile_number=5 tile_suffix="gkp" stat="stats.transfers_in_event" %}
+            {% include "a4_analytics/_stat_column.html" with player_list=stat_lists.transfers_in_event.def tile_number=5 tile_suffix="def" stat="stats.transfers_in_event" %}
+            {% include "a4_analytics/_stat_column.html" with player_list=stat_lists.transfers_in_event.mid tile_number=5 tile_suffix="mid" stat="stats.transfers_in_event" %}
+            {% include "a4_analytics/_stat_column.html" with player_list=stat_lists.transfers_in_event.fwd tile_number=5 tile_suffix="fwd" stat="stats.transfers_in_event" %}
+        </div>
+
+        <!-- Transfers Out -->
+
+        <div class="stat-column-div">
+            {% include "a4_analytics/_stat_column_head.html" with title="Transfers Out" tile_number=6 %}
+
+            {% include "a4_analytics/_stat_column.html" with player_list=stat_lists.transfers_out.all tile_number=6 tile_suffix="all" stat="stats.transfers_out" %}
+            {% include "a4_analytics/_stat_column.html" with player_list=stat_lists.transfers_out.gkp tile_number=6 tile_suffix="gkp" stat="stats.transfers_out" %}
+            {% include "a4_analytics/_stat_column.html" with player_list=stat_lists.transfers_out.def tile_number=6 tile_suffix="def" stat="stats.transfers_out" %}
+            {% include "a4_analytics/_stat_column.html" with player_list=stat_lists.transfers_out.mid tile_number=6 tile_suffix="mid" stat="stats.transfers_out" %}
+            {% include "a4_analytics/_stat_column.html" with player_list=stat_lists.transfers_out.fwd tile_number=6 tile_suffix="fwd" stat="stats.transfers_out" %}
+        </div>
+
+        <!-- Transfers Out Event -->
+
+        <div class="stat-column-div">
+            {% include "a4_analytics/_stat_column_head.html" with title="Transfers Out Event" tile_number=7 %}
+
+            {% include "a4_analytics/_stat_column.html" with player_list=stat_lists.transfers_out_event.all tile_number=7 tile_suffix="all" stat="stats.transfers_out_event" %}
+            {% include "a4_analytics/_stat_column.html" with player_list=stat_lists.transfers_out_event.gkp tile_number=7 tile_suffix="gkp" stat="stats.transfers_out_event" %}
+            {% include "a4_analytics/_stat_column.html" with player_list=stat_lists.transfers_out_event.def tile_number=7 tile_suffix="def" stat="stats.transfers_out_event" %}
+            {% include "a4_analytics/_stat_column.html" with player_list=stat_lists.transfers_out_event.mid tile_number=7 tile_suffix="mid" stat="stats.transfers_out_event" %}
+            {% include "a4_analytics/_stat_column.html" with player_list=stat_lists.transfers_out_event.fwd tile_number=7 tile_suffix="fwd" stat="stats.transfers_out_event" %}
+        </div>
+
+        
+
+    </div>
+
+
+
+</div>
+
+{% endblock %}
+
+
