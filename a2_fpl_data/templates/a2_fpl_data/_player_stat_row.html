@@ -1,0 +1,11 @@
+{% load static %}
+{% load custom_filters_a2 %}
+
+<div class={{ class }}>
+    <span class="player-details-stat-element-heading">{{ title }} </span>
+    <span class="player-details-stat-element"><span class="player-details-stat-element-value">{{ player|lookup:stat }}</span></span>
+    <span class="player-details-stat-element"><span class="player-details-stat-element-value">{{ player_ranks|lookup:stat|lookup:"all"}}</span><span class="out-of">/{{ counts.all }}</span></span>
+    <span class="player-details-stat-element"><span class="player-details-stat-element-value">{{ player_ranks|lookup:stat|lookup:"pos" }}</span><span class="out-of">/{{ counts.type }}</span></span>
+    <span class="player-details-stat-element"><span class="player-details-stat-element-value">{{ player_ranks|lookup:stat|lookup:"team" }}</span><span class="out-of">/{{ counts.team }}</span></span>
+    <span class="player-details-stat-element"><span class="player-details-stat-element-value">{{ player_ranks|lookup:stat|lookup:"pos_team" }}</span><span class="out-of">/{{ counts.team_type }}</span></span>
+</div>

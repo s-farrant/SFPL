@@ -11,7 +11,7 @@
         <h3 class="bar-header">Dreamteams</h3>
         <div class="sidebar-content">
             <li class="bar-list">
-                <a href="{% url 'tots' %}">Overall</a>
+                <a class="bold" href="{% url 'tots' %}">Overall</a>
             </li>
             {% for gameweek in available_gameweeks %}
                 <li class="bar-list">
@@ -29,7 +29,7 @@
 
         <div class="summary">
             <div class="gameweek">
-                Gameweek {{ selected_gameweek }}
+                Team of the Season
             </div>
             <div class="total-points-div">
                 <div class="total-points-heading">
@@ -47,28 +47,28 @@
                 <!-- Goalkeeper Row -->
                 <div class="position-row">
                     {% for player in gkp %}
-                        {% include "a2_fpl_data/_player_icon.html" with team="dreamteam" player=player extn="_GK" %}
+                        {% include "a2_fpl_data/_player_icon.html" with team="tots" player=player extn="_GK" %}
                     {% endfor %}
                 </div>
 
                 <!-- Defenders Row -->
                 <div class="position-row">
                     {% for player in def %}
-                        {% include "a2_fpl_data/_player_icon.html" with team="dreamteam" player=player extn="" %}
+                        {% include "a2_fpl_data/_player_icon.html" with team="tots" player=player extn="" %}
                     {% endfor %}
                 </div>
 
                 <!-- Midfielders Row -->
                 <div class="position-row">
                     {% for player in mid %}
-                        {% include "a2_fpl_data/_player_icon.html" with team="dreamteam" player=player extn="" %}
+                        {% include "a2_fpl_data/_player_icon.html" with team="tots" player=player extn="" %}
                     {% endfor %}
                 </div>
 
                 <!-- Attackers Row -->
                 <div class="position-row">
                     {% for player in fwd %}
-                        {% include "a2_fpl_data/_player_icon.html" with team="dreamteam" player=player extn="" %}
+                        {% include "a2_fpl_data/_player_icon.html" with team="tots" player=player extn="" %}
                     {% endfor %}
                 </div>
             </div>

@@ -1,6 +1,6 @@
 from django.db import models
 
-# Regions - No update
+# Regions
 
 class Region(models.Model):
     region_id = models.IntegerField(primary_key=True, unique=True)
@@ -8,11 +8,12 @@ class Region(models.Model):
     code = models.IntegerField(unique=True)
     iso_code_short = models.CharField(max_length=2)
     iso_code_long = models.CharField(max_length=3)
+    image_tag = models.CharField(max_length=10, default="")
 
     def __str__(self):
         return self.name
     
-# Teams - Update manually after each season
+# Teams
 
 class Team(models.Model):
     code = models.IntegerField(primary_key=True, unique=True)
@@ -29,7 +30,7 @@ class Team(models.Model):
     def __str__(self):
         return self.team_name
     
-# Fixtures - Updates daily
+# Fixtures
 
 class Fixture(models.Model):
     fixture_id = models.IntegerField(primary_key=True)
@@ -47,7 +48,7 @@ class Fixture(models.Model):
     def __str__(self):
         return f"{self.team_h.team_name} vs {self.team_a.team_name}"
     
-# Positions - No update
+# Positions
 
 class Position(models.Model):
     position_id = models.IntegerField(primary_key=True)
@@ -60,7 +61,7 @@ class Position(models.Model):
     def __str__(self):
         return self.name_short
 
-# Players - Update manually each season
+# Players 
 
 class Player(models.Model):
     player_id = models.IntegerField(primary_key=True)
@@ -68,6 +69,7 @@ class Player(models.Model):
     first_name = models.CharField(max_length=100)
     second_name = models.CharField(max_length=100)
     web_name = models.CharField(max_length=100)
+    squad_number = models.IntegerField(null=True)
     position = models.ForeignKey(Position, to_field="position_id", on_delete=models.PROTECT)
     photo = models.CharField(max_length=255)
     region = models.ForeignKey(Region, related_name="players", on_delete=models.PROTECT, null=True)
@@ -77,7 +79,7 @@ class Player(models.Model):
     def __str__(self):
         return self.web_name
     
-# Gameweek - Updated after each gameweek (checked daily)
+# Gameweek
 
 class Gameweek(models.Model):
     gameweek = models.IntegerField(primary_key=True)
@@ -101,7 +103,7 @@ class Gameweek(models.Model):
     def __str__(self):
         return f"Gameweek {self.gameweek}"
     
-# Dreamteam - Updated after each gameweek (checked daily)
+# Dreamteam
 
 class Dreamteam(models.Model):
     gameweek = models.ForeignKey(Gameweek, on_delete=models.PROTECT)

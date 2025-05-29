@@ -19,15 +19,31 @@ class Command(BaseCommand):
             for region in regions:
                 created = False
 
-                _, created = Region.objects.update_or_create( 
-                    region_id=region['id'],
-                    defaults={
-                        'name': region['name'],
-                        'code': region['code'],
-                        'iso_code_short': region['iso_code_short'],
-                        'iso_code_long': region['iso_code_long']
-                    }
-                )
+                if region['iso_code_short'] in ("EN", "en"):
+
+                    _, created = Region.objects.update_or_create( 
+                        region_id=region['id'],
+                        defaults={
+                            'name': region['name'],
+                            'code': region['code'],
+                            'iso_code_short': region['iso_code_short'],
+                            'iso_code_long': region['iso_code_long'],
+                            'image_tag': "GB-ENG"
+                        }
+                    )
+                    
+                else:
+
+                    _, created = Region.objects.update_or_create( 
+                        region_id=region['id'],
+                        defaults={
+                            'name': region['name'],
+                            'code': region['code'],
+                            'iso_code_short': region['iso_code_short'],
+                            'iso_code_long': region['iso_code_long'],
+                            'image_tag': region['iso_code_short']
+                        }
+                    )
 
                 if created:
                     self.stdout.write(self.style.SUCCESS(f"Region {region['name']} created")) # Print if created

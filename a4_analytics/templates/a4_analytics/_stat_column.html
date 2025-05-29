@@ -1,12 +1,12 @@
-{% load custom_filters %}
+{% load custom_filters_a4 %}
 
 <div class="hide-scrollbar" id="tile{{ tile_number }}-{{ tile_suffix }}">
     <div class="stat-column">
         {% for player in player_list %}
             {% if forloop.first %}
-            <div class="bar-list-rank-first t{{ player.team.code }}">
+            <div class="bar-list-rank-first t{{ player.team.code }}" style="cursor: pointer;" onclick="window.location.href='{% url 'player' player.player.player_id %}'">
                 <div class="first-player-info">
-                    <span class="rank-sidebar-first">{{ forloop.counter  }}</span>
+                    <span class="rank-sidebar-first">{{ forloop.counter }}</span>
                     <span class="player-first-name-sidebar-first">{{ player.player.first_name }}</span>
                     <span class="second-name-container scaling-container"><span class="player-second-name-sidebar-first scaling">{{ player.player.second_name }}</span></span>
                     {% if player.team.code != 14 %}
@@ -21,7 +21,7 @@
                 </div>
             </div>
             {% else %}
-                <div class="bar-list-rank">
+                <div class="bar-list-rank"  style="cursor: pointer;" onclick="window.location.href='{% url 'player' player.player.player_id %}'">
                     <span class="rank-sidebar">{{ forloop.counter }}</span>
                     <img class="sidebar-crest" src="https://resources.premierleague.com/premierleague/badges/100/t{{ player.team.code }}.png">
                     <span class="player-name-sidebar">{{ player.player.web_name }} - {{ player.player.position.name_short }}</span>

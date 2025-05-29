@@ -18,84 +18,108 @@ a {
 
 .t3 { /* Arsenal */
     background: linear-gradient(284.38deg,#be000a,#ff0203);
+    fill: #ff0203;
 }
 
 .t7 { /* Aston Villa */
     background: linear-gradient(284.38deg,#7d1142,#a6245f);
+    fill: #a6245f;
 }
 
 .t91 { /* Bournemouth */
     background: linear-gradient(284.38deg,#af0c13,#df1e26);
+    fill: #df1e26;
 }
 
 .t94 { /* Brentford */
     background: linear-gradient(284.38deg,#c10000,#ff1c24);
+    fill: #ff1c24;
 }
 
 .t36 { /* Brighton */
     background: linear-gradient(284.38deg,#0054a6,#1471cc);
+    fill: #1471cc;
 }
 
 .t8 { /* Chelsea */
     background: linear-gradient(284.38deg,#1934be,#2145f6);
+    fill: #2145f6;
 }
 
 .t31 { /* Crystal Palace */
     background: linear-gradient(284.38deg,#093466,#0d5dba);
+    fill: #0d5dba;
 }
 
 .t11 { /* Everton */
     background: linear-gradient(284.38deg,#00019e,#3334b1);
+    fill: #3334b1;
 }
 
-.t54, .t54 * { /* Fulham */
+.t54 { /* Fulham */
     background: linear-gradient(284.38deg,#fff,#e3e3e3);
+    fill: #e3e3e3;
+    color: black;
+}
+
+.t54 * {
     color: black;
 }
 
 .t40 { /* Ipswitch */
     background: linear-gradient(284.38deg,#0d4dde,#0333a0);
+    fill: #0333a0;
 }
 
 .t13 { /* Leicester */
     background: linear-gradient(284.38deg,#0b56a4,#003090);
+    fill: #003090;
 }
 
 .t14 { /* Liverpool */
     background: linear-gradient(284.38deg,#911712,#dc0714);
+    fill: #dc0714;
 }
 
 .t43 { /* Man City */
     background: linear-gradient(284.38deg,#6a9bc2,#98c5e9);
+    fill: #98c5e9;
 }
 
 .t1 { /* Man Utd */
     background: linear-gradient(284.38deg,#b40808,#ea0c0c);
+    fill: #ea0c0c;
 }
 
 .t4 { /* Newcastle */
     background: linear-gradient(284.38deg,#231f20,#444041);
+    fill: #444041;
 }
 
 .t17 { /* Nottingham Forset */
     background: linear-gradient(284.38deg,#c2112e,#d93d56);
+    fill: #d93d56;
 }
 
 .t20 { /* Southampton */
     background: linear-gradient(284.38deg,#fc2651,#c80028);
+    fill: #c80028;
 }
 
 .t6 { /* Spurs */
     background: linear-gradient(284.38deg,#fff,#e3e3e3);
+    fill: #e3e3e3;
     color: black;
 }
 
 .t21 { /* West Ham */
     background: linear-gradient(284.38deg,#6f2130,#963849);
+    fill: #963849;
 }
 
 .t39 { /* Wolves */
     background: linear-gradient(284.38deg,#ffca5e,#f99808);
+    fill: #f99808;
 }
 
 /* BASE STYLE */
@@ -107,7 +131,6 @@ a {
     display: flex;
     justify-content: flex-start; 
     align-items: center;
-    margin-bottom: 25px;  
 }
 
 .logo {
@@ -137,6 +160,7 @@ footer {
 /* BLOCK CONTENT STYLE */
 
 .page-div {
+    margin-top: 25px;
     display: flex;  
     align-items: flex-start;  
 }
@@ -428,6 +452,9 @@ footer {
     background-color: white;
     color: black;
     padding: 4px;
+    white-space: nowrap;        
+    overflow: hidden;           
+    text-overflow: ellipsis; 
 }
 
 .player-oppo {
@@ -443,13 +470,15 @@ footer {
     color: white;
     padding: 5px;
     border-radius: 5px 5px 0 0;
-
+    display: inline-block;
+    white-space: nowrap;
 }
 
 .player-oppo-text {
     background-clip: text;
     -webkit-text-fill-color: transparent;
     background-image: linear-gradient(to right, rgb(5, 240, 255), rgb(0, 255, 135));
+    display: inline; 
 }
 
 .player-points {
@@ -804,4 +833,357 @@ footer {
 #tile10-all-button,
 #tile11-all-button {
     box-shadow: inset 0 -1px 0 #963cff;
+}
+
+.player-header {
+    position: relative;
+    height: 300px;
+}
+
+.player-header-svg {
+    position: absolute; 
+    top: 0; 
+    left: 50%; 
+    transform: translateX(-50%); 
+    width: auto; 
+    height: 100%; 
+    object-fit: cover;
+}
+
+.player-header-content {
+    position: relative;
+    display: flex;
+    height: 100%;
+    z-index: 1; 
+    color: white; 
+    padding-left: 15%;
+    padding-right: 15%;
+}
+
+.player-image-container-detail {
+    position: absolute;
+    bottom: 0;
+    height: 100%;
+}
+
+.player-name-container {
+    display: flex;
+    flex-direction: column;;
+    margin-left: 280px;
+    vertical-align: middle;
+    height: 100%;
+    justify-content: center;
+}
+
+.player-header-content img {
+    position: absolute;
+    bottom: 0;
+    width: 250px;
+
+}
+
+.player-first-name-head {
+    font-family: PremierSans-Bold, Arial, "Helvetica Neue", Helvetica, sans-seriff;
+    font-size: 30px;
+}
+
+.player-last-name-head {
+    font-family: PremierSans-Heavy, Arial, Helvetica Neue, Helvetica,sans-serif;
+    font-weight: 800;
+    font-size: 60px;
+}
+
+.player-position-head {
+    padding-top: 40px;
+    font-family: PremierSans-Regular, Arial, Helvetica Neue, Helvetica,sans-serif;
+    font-size: 15px;
+}
+
+.player-banner {
+    position: relative;
+    padding-left: calc(15% + 280px);;
+    padding-right: 35% + 200px;
+}
+
+.banner-container {
+    position: absolute;
+    bottom: 0;
+    transform: translateY(50%);
+    display: flex;
+    align-items: center;
+    z-index: 1;
+}
+
+.team-badge-container {
+    background-color: white;
+    width: 130px;
+    height: 130px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 30px;
+}
+
+.team-badge {
+    width: 65%;
+    height: auto;
+}
+
+.player-info-banner {
+    background-color: white;
+    width: auto;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: PremierSans-Heavy, Arial, Helvetica Neue, Helvetica,sans-serif;
+    font-size: 15px;    
+    border-radius: 5px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.player-info-banner-element {
+    display: flex;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    border-right: solid 1px rgb(211, 211, 211);
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.player-info-banner-element-end {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.region-flag {
+    height: 20px;
+    padding-right: 20px;
+    overflow: hidden;
+}
+
+.region-flag img {
+    height: 20px;
+    border: solid 1px rgb(243, 243, 243);
+    border-radius: 4px;
+}
+
+.pib-second {
+    margin-left: 30px;
+}
+
+.player-details {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    column-gap: 20px;
+    margin-top: 100px;
+    margin-left: 15%;
+    margin-right: 15%;
+}
+
+.player-details-stat-element-container {
+    display: grid;
+    align-items: center;
+    grid-template-columns: 35% 25% 10% 10% 10% 10%;
+    padding-top: 0px;
+    padding-bottom: 8px;
+    border-bottom: solid 1px rgb(228, 228, 228);
+}
+
+.player-details-stat-element-container-last {
+    display: grid;
+    align-items: center;
+    grid-template-columns: 35% 25% 10% 10% 10% 10%;
+    padding-top: 0px;
+    padding-bottom: 8px;
+}
+
+.player-details-stat-element {
+    display: flex;
+    align-items: center;
+    
+}
+
+.player-details-stat-heading-container {
+    display: grid;
+    grid-template-columns: 35% 25% 10% 10% 10% 10%;
+    font-family: PremierSans-Heavy, Arial, Helvetica Neue, Helvetica,sans-serif;
+    padding-bottom: 5px;
+    padding-top: 8px;
+}
+
+.out-of {
+    font-size: 9px;
+}
+
+.player-details-stat-container-border {
+    background: linear-gradient(238.01deg,#ebff00 -2.21%,#00ff87 102.01%,#05f0ff 206.23%);
+    padding-top: 4px;
+    border: solid 1px rgb(236, 236, 236);
+    border-radius: 8px;
+    height: auto;
+    margin-top: 20px;
+}
+
+.player-details-stat-container {
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 0 0 8px 8px;
+}
+
+.player-details-stat-element-value {
+    font-family: PremierSans-Bold, Arial, Helvetica Neue, Helvetica,sans-serif;
+    padding-right: 1px;
+}
+
+.player-details-stat-element-heading {
+    padding-right: 10px;
+}
+
+.team-grid {
+    width: auto;
+    display: grid;
+    grid-template-columns: 50% 50%;
+    margin: 40px 40px 40px 40px;
+}
+
+.team-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    margin: 20px;
+    padding: 15px;
+    border-radius: 5px;
+    overflow: hidden;
+    height: 160px;
+}
+
+.team-badge2 {
+    padding-right: 30px;
+    height: 80%;
+}
+
+.team-name {
+    font-family: PremierSans-Heavy, Arial, Helvetica Neue, Helvetica,sans-serif;
+    font-size: 30px;
+}
+
+.team-header-svg {
+    position: absolute;
+    top: 0; 
+    left: 0;
+    width: 100%;
+    height: 100%; 
+    object-fit: cover;
+    z-index: 0;
+}
+
+.team-content {
+    display: flex;
+    align-items: center;
+    z-index: 100;
+}
+
+.team-header {
+    position: relative;
+    height: 300px;
+    display: flex;
+    align-items: center;
+    padding-right: 200px;
+    overflow: hidden;
+}
+
+.team-header-container {
+    display: flex;
+    align-items: center;
+    z-index: 1;
+    padding-left: 200px;
+}
+
+.team-name3 {
+    font-family: PremierSans-Heavy, Arial, Helvetica Neue, Helvetica,sans-serif;
+    font-size: 50px;
+    padding-left: 20px;
+}
+
+.player-name-select {
+    width: 100%;
+    display: flex;
+    position: relative;
+    align-items: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-bottom: solid rgb(230, 230, 230) 1px;
+
+}
+
+.players-list-container {
+    padding-left: 15%;
+    padding-right: 15%;
+}
+
+
+.player-list-image {
+    height: 100px;
+    position: absolute;
+    top: 80%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    object-fit: cover;
+}
+
+.player-list-image-container {
+    position: relative;
+    height: 70px;
+    width: 100px;
+    overflow: hidden;
+}
+
+.player-list-first-name {
+    font-family: PremierSans-Heavy, Arial, Helvetica Neue, Helvetica,sans-serif;
+    font-size: 15px;
+    padding-right: 10px;
+    color: grey;
+}
+
+.player-list-second-name {
+    font-family: PremierSans-Heavy, Arial, Helvetica Neue, Helvetica,sans-serif;
+    font-size: 30px;
+    color: #37003c;
+}
+
+
+.player-name-container2 {
+    display: flex;
+    flex-direction: column;   
+    justify-content: center;
+}
+
+.player-heading {
+    font-family: PremierSans-Heavy, Arial, Helvetica Neue, Helvetica,sans-serif;
+    font-size: 20px;
+    padding-top: 60px;
+    padding-bottom: 30px;
+}
+
+.player-total-points {
+    margin-left: auto;
+    font-family: PremierSans-Heavy, Arial, Helvetica Neue, Helvetica,sans-serif;
+    color: #37003c;
+    font-size: 20px;
+}
+
+.static-player-data-container {
+    display:flex;
+    align-items: center;
 }

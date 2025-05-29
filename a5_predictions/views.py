@@ -32,14 +32,44 @@ class EpNextView(View):
                 event=int(latest_gameweek+1)
             )
             
-            for fixture in fixtures:
-                if fixture.team_h == player.team:
-                    opponent = fixture.team_a.short_name
-                    location = "Home"
-                elif fixture.team_a == player.team:
-                    opponent = fixture.team_h.short_name
-                    location = "Away"
 
+            opponent = None
+            location = None
+            opponent2 = None
+            location2 = None
+            oppo_loc = None
+            oppo_loc2 = None
+            for fixture in fixtures:
+                if len(fixtures) == 1:
+                    if fixture.team_h == player.team:
+                        opponent = fixture.team_a.short_name
+                        location = "Home"
+                        oppo_loc = "A"
+                    elif fixture.team_a == player.team:
+                        opponent = fixture.team_h.short_name
+                        location = "Away"
+                        oppo_loc = "H"
+                elif len(fixtures) == 2:
+                    if opponent == None:
+                        if fixture.team_h == player.team:
+                            opponent = fixture.team_a.short_name
+                            location = "Home"
+                            oppo_loc = "A"
+                        elif fixture.team_a == player.team:
+                            opponent = fixture.team_h.short_name
+                            location = "Away"
+                            oppo_loc = "H"
+                    else:
+                        if fixture.team_h == player.team:
+                            opponent2 = fixture.team_a.short_name
+                            location2 = "Home"
+                            oppo_loc2 = "A"
+                        elif fixture.team_a == player.team:
+                            opponent2 = fixture.team_h.short_name
+                            location2 = "Away"
+                            oppo_loc2 = "H"
+                else:
+                    pass
 
             if player.position.name_short == "GKP":
                 gk.append({
@@ -48,7 +78,11 @@ class EpNextView(View):
                     "position": position,
                     "ep_next": entry.ep_next,
                     "opponent": opponent,
-                    "location": location
+                    "location": location,
+                    "opponent2": opponent2,
+                    "location2": location2,
+                    "oppo_loc": oppo_loc,
+                    "oppo_loc2": oppo_loc2
                     }
                 )
             if player.position.name_short == "DEF":
@@ -58,7 +92,11 @@ class EpNextView(View):
                     "position": player.position.name_short,
                     "ep_next": entry.ep_next,
                     "opponent": opponent,
-                    "location": location
+                    "location": location,
+                    "opponent2": opponent2,
+                    "location2": location2,
+                    "oppo_loc": oppo_loc,
+                    "oppo_loc2": oppo_loc2
                     }
                 )
             if player.position.name_short == "MID":
@@ -68,7 +106,11 @@ class EpNextView(View):
                     "position": player.position.name_short,
                     "ep_next": entry.ep_next,
                     "opponent": opponent,
-                    "location": location
+                    "location": location,
+                    "opponent2": opponent2,
+                    "location2": location2,
+                    "oppo_loc": oppo_loc,
+                    "oppo_loc2": oppo_loc2
                     }
                 )
             if player.position.name_short == "FWD":
@@ -78,7 +120,11 @@ class EpNextView(View):
                     "position": player.position.name_short,
                     "ep_next": entry.ep_next,
                     "opponent": opponent,
-                    "location": location
+                    "location": location,
+                    "opponent2": opponent2,
+                    "location2": location2,
+                    "oppo_loc": oppo_loc,
+                    "oppo_loc2": oppo_loc2
                     }
                 )
 
@@ -137,7 +183,5 @@ class EpNextView(View):
             "total": total,
             "selected-position": selected_position
         }
-
-
 
         return render(request, 'a5_predictions/expected_points.html', context)

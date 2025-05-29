@@ -1,0 +1,11 @@
+{% extends "a1_core/base.html" %}
+{% load static %}
+{% load custom_filters_a2 %}
+
+{% block content %}
+
+<div class="team-grid">
+    {% include "a2_fpl_data/_team_icon.html" with team_list=teams %}
+</div>
+
+{% endblock %}

@@ -1,9 +1,10 @@
 import logging
 from django.shortcuts import render
 from a2_fpl_data.models import Player, Team, Gameweek
-from .models import PlayerDynamicData
+from .models import PlayerDynamicData, PlayerDynamicDataRanks
 from django.views import View
 from pprint import pprint
+from django.db.models import Q
 
 logger = logging.getLogger(__name__)
 
@@ -57,6 +58,8 @@ def create_context(model, stat_fields):
             context['stat_lists'][stat][pos] = sort_by_stat(players, stat)
 
     return context
+
+# Format text
 
 def process_dict_percent(context):
     for key, value in context.items():

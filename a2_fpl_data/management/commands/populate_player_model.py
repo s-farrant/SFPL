@@ -23,7 +23,7 @@ class Command(BaseCommand):
                 region_instance = None
                 if player['region'] is not None:
                     try:
-                        region_instance = Region.objects.get(region_id=player['region'])
+                        region_instance = Region.objects.get(region_id=player['region']) # populate_player_model
                     except Region.DoesNotExist:
                         region_instance = None 
 
@@ -34,6 +34,7 @@ class Command(BaseCommand):
                         'first_name': player['first_name'],
                         'second_name': player['second_name'],
                         'web_name': player['web_name'],
+                        'squad_number': player['squad_number'],
                         'photo': player['photo'],
                         'region': region_instance,
                         'birth_date': player['birth_date'],
@@ -47,8 +48,8 @@ class Command(BaseCommand):
                 else:
                     self.stdout.write(self.style.SUCCESS(f"Player {player['web_name']} - {player['id']} updated")) # Print if updated
             
-            run_log.info(f"POPULATE_PLAYER: Ran successfully at {datetime.datetime.now()}") 
+            print(f"POPULATE_PLAYER: Ran successfully at {datetime.datetime.now()}") 
 
         except Exception as e:
-
-            run_log.info(f"POPULATE_PLAYER: Ran successfully at {datetime.datetime.now()}") 
+            print(e)
+            print(f"POPULATE_PLAYER: Failed at {datetime.datetime.now()}") 

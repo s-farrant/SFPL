@@ -1,0 +1,33 @@
+<div class="player-list-container-inner">
+    {% for player in players %}
+
+        <div class="player-name-select">
+            <div class="static-player-data-container">
+                <div class="player-list-image-container">
+                    <img class="player-list-image" 
+                         src="https://resources.premierleague.com/premierleague/photos/players/250x250/p{{ player.player.photo|slice:":-4" }}.png"
+                         onerror="this.onerror=null; this.src='https://resources.premierleague.com/premierleague/photos/players/110x140/Photo-Missing.png';">
+                </div>
+
+                <div class="region-flag region-flag2">
+                    <img src="https://resources.premierleague.com/premierleague/flags/{{ player.player.region.image_tag }}@x2.png"
+                         onerror="this.onerror=null; this.src='/static/assets/blank-flag.png';">
+                </div>
+
+                <div class="player-name-container2" style="cursor: pointer;" onclick="window.location.href='{% url 'player' player.player.player_id %}'">
+                    <div class="player-list-first-name">
+                        {{ player.player.first_name }}
+                    </div>
+                    <div class="player-list-second-name">
+                        {{ player.player.second_name }}
+                    </div>
+                </div>
+            </div>
+
+            <div class="player-total-points">
+                {{ player.total_points }}pts
+            </div>
+        </div>
+
+    {% endfor %}
+</div>
